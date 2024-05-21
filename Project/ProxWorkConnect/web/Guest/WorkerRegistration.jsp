@@ -12,33 +12,61 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Worker Registration</title>
+          <style>
+        .bg-img{
+            background-image:url("../Assets/Templates/Main/images/worker.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            }
+            .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+                 border-radius: 2px;
+            }    
+               
+            .font{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8; 
+            }
+            .button{
+                background-color: #e0e032c2;
+            }
+        </style>                
     </head>
+    <div class="bg-img">
+            <div style="background-color: #000000b8 !important;">
+    <%@include file="Head.jsp" %>
     <body>
+        <div class="font">
         <form method="post" enctype="multipart/form-data" action="../Assets/ActionPages/WorkerUploadAction.jsp">
-            <table border="3" align="center">
+            <br><br><br>
+            <table cellpadding="15" align="center">
                 <tr>
                     <td>Name</td>
                     <td>
-                        <input required type="text" name="name" placeholder="Enter Name" title="Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter" pattern="^[A-Z]+[a-zA-Z ]*$" >
+                        <input required type="text" class="text-box" name="name" placeholder="Enter Name" title="Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter" pattern="^[A-Z]+[a-zA-Z ]*$" >
                     </td>
                 </tr>
                 <tr>
                     <td>Contact</td>
                     <td>
-                        <input required type="text" name="contact" placeholder="Enter Contact No" pattern="[7-9]{1}[0-9]{9}" 
+                        <input  class="text-box" required type="text" name="contact" placeholder="Enter Contact No" pattern="[7-9]{1}[0-9]{9}" 
                 title="Phone number with 7-9 and remaing 9 digit with 0-9">
                     </td>
                 </tr>
                 <tr>   
                     <td>Email</td>
                     <td>
-                        <input type="email" required name="email" placeholder="Enter Email-Id">
+                        <input type="email" class="text-box" required name="email" placeholder="Enter Email-Id">
                     </td>
                 </tr>
                 
                 
                  <tr><td>Address</td>
-                     <td><textarea name="address" rows="3" cols="10" required></textarea>
+                     <td><textarea name="address" class="text-box" rows="3" cols="10" required></textarea>
                  </tr>
                     
                  <tr>
@@ -56,25 +84,25 @@
                 <tr>
                     <td>DOB</td>
                     <td>
-                        <input required  type="text" name="dob"placeholder="Enter DateOfBirth" >
+                        <input required class="text-box"  type="text" name="dob"placeholder="Enter DateOfBirth" >
                     </td>
                 </tr>
                 <tr>
                     <td>Password</td>
                     <td>
-                        <input type="password" name="psswd" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required >
+                        <input type="password" class="text-box"  name="psswd" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required >
                     </td>
                 </tr> 
                  <tr>
                     <td>Confirm Password</td>
                     <td>
-                        <input type="password" name="repass" placeholder="Re-enter Password">
+                        <input type="password" class="text-box" name="repass" placeholder="Re-enter Password">
                     </td>
                 </tr>
                 <tr>
                     <td>District</td>
                     <td>
-                        <select name="ddis" onchange="getPlace(this.value)">
+                        <select name="ddis" class="text-box" onchange="getPlace(this.value)">
                             <option>--select--</option>
                             <%
                               String selqry1="select * from tbl_district";
@@ -93,7 +121,7 @@
                 <tr>
                     <td>Place</td>
                     <td>
-                        <select name="ddlplace" id="selplace">
+                        <select name="ddlplace" class="text-box" id="selplace">
                             <option>--select--</option>
                             
                         </select>
@@ -102,7 +130,7 @@
                 <tr>
                     <td>Worker Type</td>
                     <td>
-                        <select name="ddltype">
+                        <select name="ddltype" class="text-box">
                             <option>--select--</option>
                             <%
                               String selqry2="select * from tbl_workertype";
@@ -121,8 +149,8 @@
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" name="save" value="Save">
-                        <input type="reset" name="cancel" value="Cancel">
+                        <input type="submit" name="save" value="Save" class="button">
+                        <input type="reset" name="cancel" value="Cancel"class="button">
                     </td>
                 </tr>
             </table>
@@ -142,4 +170,9 @@
                             }
                            
                         </script>
+                        <br><br><br><br><br><br><br><br><br>
+            </div>
+            </div>
+    </div>
+<%@include file="Foot.jsp" %>
 </html>

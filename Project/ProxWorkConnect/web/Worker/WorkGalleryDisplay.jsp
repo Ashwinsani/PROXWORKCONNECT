@@ -22,7 +22,7 @@
           }
         %>
         <div align="center">
-        <h2>Uploaded Works</h2>
+        <h2>Image Gallery</h2>
         <form method="post">
         <table border="3" align="center">
                

@@ -57,15 +57,16 @@ public final class Searchworker_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
-      out.write("        <title>Search Worker</title>\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <title>Searchworker</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <form method=\"POST\">\n");
+      out.write("        <form method=\"post\">\n");
       out.write("        <table border=\"3\" align=\"center\">\n");
-      out.write("       <tr>\n");
+      out.write("         <tr>\n");
       out.write("                    <td>District</td>\n");
       out.write("                    <td>\n");
-      out.write("                        <select name=\"ddis\" onchange=\"getPlace(this.value)\">\n");
+      out.write("                        <select name=\"ddldis\" onchange=\"getPlace(this.value)\" required>\n");
       out.write("                            <option>--select--</option>\n");
       out.write("                            ");
 
@@ -93,16 +94,16 @@ public final class Searchworker_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                <tr>\n");
       out.write("                    <td>Place</td>\n");
       out.write("                    <td>\n");
-      out.write("                        <select name=\"ddlplace\" id=\"selplace\">\n");
+      out.write("                        <select name=\"ddlplace\" id=\"selplace\" required>\n");
       out.write("                            <option>--select--</option>\n");
       out.write("                            \n");
       out.write("                        </select>\n");
       out.write("                    </td>\n");
       out.write("                </tr>\n");
-      out.write("                 <tr>\n");
+      out.write("                <tr>\n");
       out.write("                    <td>Worker Type</td>\n");
       out.write("                    <td>\n");
-      out.write("                        <select name=\"ddltype\">\n");
+      out.write("                        <select name=\"ddltype\" required>\n");
       out.write("                            <option>--select--</option>\n");
       out.write("                            ");
 
@@ -134,47 +135,56 @@ public final class Searchworker_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                    </td>\n");
       out.write("                </tr>\n");
       out.write("        </table><br>\n");
-      out.write("        <table border=\"1\" align=\"center\">\n");
-      out.write("            <tr>\n");
-      out.write("            <th>Sl.no</th>\n");
-      out.write("            <th>District</th>\n");
-      out.write("            <th>Place</th>\n");
-      out.write("            <th>WorkerType</th>\n");
-      out.write("            <th>Action</th>\n");
-      out.write("            </tr>\n");
-      out.write("            ");
+      out.write("                <table border=\"1\" align=\"center\">\n");
+      out.write("                <tr>\n");
+      out.write("                    <th>Sl.no</th>\n");
+      out.write("                    <th>Name</th>\n");
+      out.write("                    <th>Workertype</th>\n");
+      out.write("                    <th>Contact</th>\n");
+      out.write("                    <th>Works</th>\n");
+      out.write("                    <th>Request</th>\n");
+      out.write("                </tr>\n");
+      out.write("                ");
 
-              if(request.getParameter("search")!=null){
-                 String selqry="select * from tbl_worker w inner join tbl_place p on p.place_id=w.place_id inner join tbl_workertype t on t.workertype_id=w.workertype_id inner join tbl_district d on d.district_id=p.district_id where p.place_id='"+request.getParameter("ddlplace")+"'and t.workertype_id='"+request.getParameter("ddltype")+"'";
-                ResultSet rs=con.selectCommand(selqry);
-                int i=0;
-                while(rs.next()){
-                 i++; 
-                              
-            
+                  if(request.getParameter("search")!=null){
+                 String selectqry="select * from tbl_worker w inner join tbl_place p on p.place_id=w.place_id inner join tbl_workertype t on t.workertype_id=w.workertype_id inner join tbl_district d on d.district_id=p.district_id where p.place_id='"+request.getParameter("ddlplace")+"' and t.workertype_id='"+request.getParameter("ddltype")+"'";
+                 ResultSet r=con.selectCommand(selectqry);
+                
+                 int i=0;
+                 while(r.next())
+                 {
+                     i++;
+                     
       out.write("\n");
-      out.write("            <tr>\n");
-      out.write("                  <td>");
+      out.write("                     <tr>\n");
+      out.write("                         <td>");
       out.print(i);
       out.write("</td>\n");
-      out.write("                  <td>");
-      out.print(rs.getString("district_name"));
-      out.write("</td>\n");
-      out.write("                  <td>");
-      out.print(rs.getString("place_name"));
-      out.write("</td>\n");
-      out.write("                  <td>");
-      out.print(rs.getString("workertype_name"));
-      out.write("</td>\n");
+      out.write("                   <td>");
+      out.print(r.getString("worker_name"));
+      out.write("</td> \n");
+      out.write("                 <td>");
+      out.print(r.getString("workertype_name"));
+      out.write("</td> \n");
+      out.write("                 <td>");
+      out.print(r.getString("worker_contact"));
+      out.write("</td> \n");
+      out.write("                 \n");
+      out.write("                 <td><a href=\"ViewWork.jsp?sid=");
+      out.print(r.getString("worker_id"));
+      out.write(" \">View Works</a>\n");
+      out.write("                 <td><a href=\"Request.jsp?eid=");
+      out.print(r.getString("worker_id"));
+      out.write("\">Request Now</a>\n");
+      out.write("                 </tr>\n");
       out.write("                  ");
 
-                }
+                 }
                   }
                   
       out.write("\n");
-      out.write("            </tr> \n");
-      out.write("             </table>\n");
-      out.write("        </form>                     \n");
+      out.write("        </table>        \n");
+      out.write("    </form>\n");
       out.write("    </body>\n");
       out.write("    <script src=\"../Assets/JQuery/jQuery.js\"></script>         \n");
       out.write("                            <script>\n");
@@ -191,9 +201,6 @@ public final class Searchworker_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("                           \n");
       out.write("                        </script>\n");
       out.write("</html>\n");
-      out.write("\n");
-      out.write("       \n");
-      out.write("\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

@@ -33,8 +33,8 @@
                     <th>Duration</th>
                     <th>Posted Date</th>
                     <th>Action</th>
-                    <th> Add More Photos</th>
-                    <th>View more</th>
+                    <th> Add More Images</th>
+                    <th>Image Gallery</th>
                 </tr>
         <%
                  String selqry = "select*from tbl_workpost where worker_id='"+session.getAttribute("wid")+"'";  
@@ -50,8 +50,8 @@
                          <td><%=rs.getString("workpost_duration")%></td>
                          <td><%=rs.getString("workpost_date")%></td>
                          <td><a href="WorkPostDisplay.jsp?did=<%=rs.getString("workpost_id")%>">Delete</a></td>
-                         <td><a href="WorkPostGallery.jsp?pid=<%=rs.getString("workpost_id")%>">Addphoto</a></td>
-                         <td><a href="WorkGalleryDisplay.jsp?gid=<%=rs.getString("workpost_id")%>">morephotos</a></td>
+                         <td><a href="WorkPostGallery.jsp?pid=<%=rs.getString("workpost_id")%>">AddMoreImages</a></td>
+                         <td><a href="WorkGalleryDisplay.jsp?gid=<%=rs.getString("workpost_id")%>">ViewGallery</a></td>
                      </tr>
                      <%
                  }
