@@ -42,12 +42,7 @@ public final class District_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    ");
+      out.write('\n');
       DB.ConnectionClass con = null;
       synchronized (_jspx_page_context) {
         con = (DB.ConnectionClass) _jspx_page_context.getAttribute("con", PageContext.PAGE_SCOPE);
@@ -57,47 +52,47 @@ public final class District_jsp extends org.apache.jasper.runtime.HttpJspBase
         }
       }
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<!DOCTYPE html>\n");
+      out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <title>JSP Page District</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
 
-            if(request.getParameter("btnsave")!=null)
-            {   
-                if(request.getParameter("txtid").equals(""))
-                {
-                String insqry="insert into tbl_district(district_name)values('"+request.getParameter("txtdis")+"')";
-                con.executeCommand(insqry);
-                }
-                else
-                {
-                    String upqry="update tbl_district set district_name='"+request.getParameter("txtdis")+"' where district_id='"+request.getParameter("txtid")+"'";
+            if (request.getParameter("btnsave") != null) {
+
+                if (request.getParameter("txtid") != "") {
+                    String upqry = "update tbl_district set district_name='" + request.getParameter("txtdis") + "' where district_id='" + request.getParameter("txtid") + "'";
                     con.executeCommand(upqry);
                     response.sendRedirect("District.jsp");
+
+                } else {
+                    String insqry = "insert into tbl_district(district_name)values('" + request.getParameter("txtdis") + "')";
+                    con.executeCommand(insqry);
                 }
             }
-            if(request.getParameter("did")!=null)
-            {
-                String delqry="delete from tbl_district where district_id='"+request.getParameter("did")+"'";
+            if (request.getParameter("did") != null) {
+                String delqry = "delete from tbl_district where district_id='" + request.getParameter("did") + "'";
                 con.executeCommand(delqry);
                 response.sendRedirect("District.jsp");
             }
-            String editid=" ";
-          String editname=" ";
-          if(request.getParameter("eid")!=null)
-          {
-              String selqry1="select *from tbl_district where district_id='"+request.getParameter("eid")+"'";
-              ResultSet rs1=con.selectCommand(selqry1);
-              rs1.next();
-              editid=rs1.getString("district_id");  
-              editname=rs1.getString("district_name");
-          }
+            String editid = "";
+            String editname = " ";
+            if (request.getParameter("eid") != null) {
+                String selqry1 = "select *from tbl_district where district_id='" + request.getParameter("eid") + "'";
+                ResultSet rs1 = con.selectCommand(selqry1);
+                rs1.next();
+                editid = rs1.getString("district_id");
+                editname = rs1.getString("district_name");
+            }
         
       out.write("\n");
       out.write("        <form method=\"post\">\n");
-      out.write("            <table border=\"1\" align=\"center\">\n");
+      out.write("            <table border=\"1\" align=\"center\">`\n");
       out.write("                <tr>\n");
       out.write("                    <td>District</td>\n");
       out.write("                    <td><input type=\"text\" name=\"txtdis\" value=\"");
@@ -113,43 +108,42 @@ public final class District_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </tr>\n");
       out.write("            </table><br>\n");
       out.write("            <table border=\"1\" align=\"center\">\n");
-      out.write("                    <tr>\n");
-      out.write("                        <th>SL.no</th>\n");
-      out.write("                        <th>District name</th>\n");
-      out.write("                        <th>type</th>\n");
-      out.write("                    </tr>\n");
-      out.write("                  ");
+      out.write("                <tr>\n");
+      out.write("                    <th>SL.no</th>\n");
+      out.write("                    <th>District name</th>\n");
+      out.write("                    <th>type</th>\n");
+      out.write("                </tr>\n");
+      out.write("                ");
 
-                  String selqry="select * from tbl_district";
-                  ResultSet rs=con.selectCommand(selqry);
-                  int i=0;
-                  while(rs.next())
-                  {
-                      i++;
-                      
+                    String selqry = "select * from tbl_district";
+                    ResultSet rs = con.selectCommand(selqry);
+                    int i = 0;
+                    while (rs.next()) {
+                        i++;
+                
       out.write("\n");
-      out.write("                      <tr>\n");
-      out.write("                          <td>");
+      out.write("                <tr>\n");
+      out.write("                    <td>");
       out.print(i);
       out.write("</td>\n");
-      out.write("                          <td>");
+      out.write("                    <td>");
       out.print(rs.getString("district_name"));
       out.write("</td>\n");
-      out.write("                          <td><a href=\"District.jsp?did=");
+      out.write("                    <td><a href=\"District.jsp?did=");
       out.print(rs.getString("district_id"));
       out.write("\">\n");
-      out.write("                                  Delete</a>|<a href=\"District.jsp?eid=");
+      out.write("                            Delete</a>|<a href=\"District.jsp?eid=");
       out.print(rs.getString("district_id"));
       out.write("\">Edit</a></td>\n");
-      out.write("                      </tr>\n");
-      out.write("                      ");
+      out.write("                </tr>\n");
+      out.write("                ");
 
-                  }
-                  
+                    }
+                
       out.write("\n");
-      out.write("                  \n");
-      out.write("                  \n");
-      out.write("                    </table>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("            </table>\n");
       out.write("        </form>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

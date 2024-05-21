@@ -59,17 +59,24 @@ public final class Workertype_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    \n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <title>JSP Page worker</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
 
             if(request.getParameter("btnsave")!=null)
             {
-                //out.println("Aswin");
+              if(!request.getParameter("txtid").equals(""))
+              {
                 String insqry="insert into tbl_workertype(workertype_name)values('"+request.getParameter("txtworkertype")+"')";
-                out.println(insqry);
                 con.executeCommand(insqry);
+              }
+                  else
+                {
+                    String upqry="update tbl_workertype set workertype_name='"+request.getParameter("txtworkertype")+"' where workertype_id='"+request.getParameter("txtid")+"'";
+                    con.executeCommand(upqry);
+                    response.sendRedirect("Workertype.jsp");
+                }
                 
                 
             }
@@ -95,7 +102,12 @@ public final class Workertype_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <table border=\"1\" align=\"center\">\n");
       out.write("                <tr>\n");
       out.write("                    <td>Worker Type</td>\n");
-      out.write("                    <td><input type=\"text\" name=\"txtworkertype\"></td>\n");
+      out.write("                    <td><input type=\"text\" name=\"txtworkertype\"value=\"");
+      out.print(editname);
+      out.write("\">\n");
+      out.write("                        <input type=\"text\" name=\"txtid\" value=\"");
+      out.print(editid);
+      out.write("\"></td>\n");
       out.write("                </tr>\n");
       out.write("                <tr>\n");
       out.write("                    <td colspan=\"2\" align=\"center\"><input  type=\"submit\" name=\"btnsave\" value=\"Save\"><input  type=\"reset\" name=\"btnc\" value=\"Cancel\"></td>\n");
