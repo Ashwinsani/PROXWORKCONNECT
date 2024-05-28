@@ -96,9 +96,21 @@
                               {
                                  out.println("Work started"); 
                               }
-                              else if(rs.getString("request_status").equals("4"))
+                              else if(rs.getString("request_status").equals("4") || rs.getString("request_status").equals("5"))
                               {
                                  out.println("Work completed"); 
+                              }
+                              else if(rs.getString("request_status").equals("6"))
+                              {
+                                 out.println("Payment Done"); 
+                              }
+                              else if(rs.getString("request_status").equals("7"))
+                              {
+                                 out.println("Ended<br>");
+                     
+                                 %>
+                                 <a href="Review.jsp?gid=<%=rs.getString("workrequest_id")%>">Rate Now</a>
+                                 <%
                               }
                        %>  </td>
                          <td class="font1">
@@ -114,9 +126,10 @@
                                else{
                               %>
                               Contact : <%=rs.getString("worker_contact")%><br>
+                              <a href="Complaint.jsp?cid=<%=rs.getString("worker_id")%>">Complaints</a><br>
                               <%
                                }
-                              if(rs.getString("request_status").equals("4"))
+                              if(rs.getInt("request_status")==5)
                               {
                                int worker_amt=Integer.parseInt(rs.getString("request_amount"));
                                int perc=(worker_amt/100)*10;
@@ -126,7 +139,7 @@
                               Amount : <%out.println(total);%><br>
                               Remarks : <%=rs.getString("request_remarks")%><br>
                               
-                              <a class="font1" href="Payment.jsp">Pay Now</a> 
+                              <a href="Payment.jsp?yid=<%=rs.getString("workrequest_id")%>">Pay Now</a> 
                              <%
                                  }
                               %>

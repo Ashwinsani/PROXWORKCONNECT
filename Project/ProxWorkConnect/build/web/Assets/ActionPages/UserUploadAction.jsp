@@ -1,8 +1,10 @@
 <%-- 
-    Document   : UserUploadAction
-    Created on : 5 Jan, 2024, 2:51:25 PM
+    Document   : WorkerUploadAction
+    Created on : 4 Jan, 2024, 11:33:14 AM
     Author     : ashwi
 --%>
+
+<%@page import="java.sql.ResultSet"%>
 
 <jsp:useBean class="DB.ConnectionClass" id="con"></jsp:useBean>
 
@@ -110,9 +112,14 @@
                 if (status == true) {
         %>
         <script type="text/javascript" >
+            <%
+            String sel="select max(user_id) as uid from tbl_user";
+            ResultSet r=con.selectCommand(sel);
+            r.next();
+            %>
             alert("Upload Successfully..");
             setTimeout(function() {
-                window.location.href = '../../Guest/userregistration.jsp'
+                window.location.href = '../../Guest/PaymentReg.jsp?uid=<%=r.getString("uid")%>'
             }, 100);
         </script>
         <%
@@ -122,14 +129,17 @@
                 {
                      %>
         <script type="text/javascript" >
-            alert("Password Mismatch..");
+            alert("Password mismatch..");
             setTimeout(function() {
-                window.location.href = '../../Guest/userregistration.jsp'
+                window.location.href = '../../Guest/UserRegistration.jsp'
             }, 100);
         </script>
         <%
                 }
-              }
+                 }   
+                       
+            
+                  
 
         %>
     </body>

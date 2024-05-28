@@ -28,7 +28,7 @@
                 
             } 
         </style>
-        <style>
+      <!--  <style>
          body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -73,7 +73,7 @@
 
         .card-content {
             padding: 15px;
-        }
+        }-->
 
        
         </style>

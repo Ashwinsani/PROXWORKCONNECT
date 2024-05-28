@@ -114,7 +114,7 @@
                 <tr>
                     <td>Worker Type</td>
                     <td>
-                        <select name="ddltype" h required>
+                        <select name="ddltype" required>
                             <option>--select--</option>
                             <%
                               String selqry2="select * from tbl_workertype";
@@ -159,7 +159,9 @@
                              <div class="cont"><div>Contact</div><div><%=r.getString("worker_contact")%></div></div>
                              <div class="cont"><div>Post Date</div><div><%=r.getString("workpost_date")%></div></div>
                              <div><a href="ViewWorkGallery.jsp?sid=<%=r.getString("workpost_id")%> ">View Gallery</a></div>
+                             <div><a href="ViewReviewWork.jsp?gid=<%=r.getString("workpost_id")%> ">View Ratings</a></div>
                              <div>
+                                
                                     <%
                                      String clr = "";
                                      String post_id=r.getString("workpost_id");
@@ -176,6 +178,7 @@
                                      <i class="fa-regular fa-heart <%=clr%>" style="font-size: 20px;font-size: 20px;margin-left: -76px;margin-right: 55px;" onclick="wishList(<%=r.getString("workpost_id")%>),toggleHeartColor(this)"></i>
                                   <a href="Booking.jsp?bid=<%=r.getString("workpost_id")%> ">Book Now</a></div>
                          </div>
+                         
                      <%
                  }
                 

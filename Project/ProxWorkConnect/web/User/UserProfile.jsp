@@ -54,8 +54,8 @@
             <br><br><br>
             <div class="font">
         <%
-          String sel1 = "select*from tbl_user where user_id='"+session.getAttribute("uid")+"'";  
-          ResultSet rsu = con.selectCommand(sel1);
+          String selqry = "select*from tbl_user where user_id='"+session.getAttribute("uid")+"'";  
+          ResultSet rsu = con.selectCommand(selqry);
           if(rsu.next())
           {
         %>

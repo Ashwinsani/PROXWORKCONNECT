@@ -12,6 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Wishlist</title>
     </head>
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
     <%@include file="Head.jsp" %>
     <style>
         .fa-heart {
@@ -32,6 +34,12 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
+             .bg-img{
+            background-image:url("../Assets/Templates/Main/images/userhome1.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            }
             .cont {
                     display: flex;
                     width: 200px;
@@ -58,6 +66,7 @@
     </head>
     
     <body>
+        
         <div class="main">
         <%
              String sqry="select * from tbl_workpost p inner join tbl_wishlist l on l.workpost_id=p.workpost_id inner join tbl_worker w on w.worker_id=p.worker_id";  
@@ -112,5 +121,8 @@
                             }
                            
                         </script>
+                        <br><br><br>
                          <%@include file="Foot.jsp" %>
+        </div>
+        </div>
 </html>

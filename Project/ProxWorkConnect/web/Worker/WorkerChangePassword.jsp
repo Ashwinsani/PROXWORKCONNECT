@@ -10,63 +10,116 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Worker Edit Profile</title>
+        <title>Worker Change Password</title>
+    <style>
+         .bg-img{
+            background-image:url("../Assets/Templates/Main/images/worker1.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            }
+             .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+                border-radius: 2px;
+            }    
+                
+                
+            .font{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8;
+            }
+            .button{
+                background-color: #e0e032c2;
+            }
+            </style>
     </head>
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
+    <%@include file="Head.jsp" %>
     <body>
-         <%
-          if(request.getParameter("update")!=null) 
-           {
-                    String upqry = "update tbl_worker set worker_name = '"+request.getParameter("name")+"',worker_contact = '"+request.getParameter("contact")+"',worker_email = '"+request.getParameter("email")+"',worker_address = '"+request.getParameter("address")+"'where worker_id = '"+session.getAttribute("wid")+"'";
-                    con.executeCommand(upqry);
-                    response.sendRedirect("WorkerEditProfile.jsp");    
-            } 
-             String editname="";
-             String editcontact="";
-             String editemail="";
-             String editaddress="";
-             
-            String sel = "select*from tbl_worker where worker_id ='"+session.getAttribute("wid")+"'";
-            ResultSet rs1 = con.selectCommand(sel);
-            rs1.next();
-            editname = rs1.getString("worker_name");
-            editcontact = rs1.getString("worker_contact");
-            editemail = rs1.getString("worker_email");
-            editaddress = rs1.getString("worker_address");
-                        
-        %>
-             
-        <form method="post">
-        <table border="3" align="center">
-                <tr>
-                    <td>Name</td>
-                    <td>
-                        <input required type="text" name="name"  value="<%=editname%>" placeholder="Enter Name" title="Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter" pattern="^[A-Z]+[a-zA-Z ]*$">
+        <br> <br> <br>
+        <div class="font">
+         <%  
+        
+       String currentpsswd=request.getParameter("psswd");
+       String newpsswd = request.getParameter("newpsswd");
+       String repsswd = request.getParameter("repass");
+       String pass ="";
+       String sq = "select*from tbl_worker where worker_id ='"+session.getAttribute("wid")+"'";
+       ResultSet rs = con.selectCommand(sq);
+       rs.next();
+       pass = rs.getString("worker_password");
+       if(request.getParameter("update")!=null)
+       {      
+        if(pass.equals(currentpsswd))
+        {
+            if(newpsswd.equals(repsswd))
+            {
+                String uq = "update tbl_worker set worker_password = '"+request.getParameter("newpsswd")+"'where worker_id = '"+session.getAttribute("wid")+"'";
+                con.executeCommand(uq);
+           %>     
+               <script>
+                        alert("Password Changed");
+                        window.location="../Guest/Login.jsp";
+               </script>
+           <%    
+            }
+            else
+            {
+                %>
+                    <script>
+                        alert("New password Mismatched");
+                        window.location="WorkerChangePassword.jsp";
+                    </script>
+                <%
+            }
+        }
+        else
+        {
+            %>
+            <script>
+                alert("Current Password Mismatched");
+                window.location="WorkerChangePassword.jsp";
+            </script>
+            <%
+        }
+       }
+    %>
+     <form method="post">
+       <table cellpadding="10" align="center">
+        <tr>
+            <td>Current Password</td>
+                    <td >
+                        <input class="text-box" required type="password" name="psswd" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                     </td>
                 </tr>
                 <tr>
-                    <td>Contact</td>
-                    <td>
-                        <input required type="text" name="contact" value="<%=editcontact%>"  placeholder="Enter Contact No" title="Phone number with 7-9 and remaining 9 digit with 0-9" pattern="[7-9]{1}[0-9]{9}">
+            <td>New Password</td>
+                    <td >
+                        <input class="text-box" required type="password" name="newpsswd" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                               title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                     </td>
                 </tr>
                 <tr>
-                    <td>Email</td>
-                    <td>
-                        <input required type="email" name="email" value="<%=editemail%>" placeholder="Enter Email-Id">
-                    </td>
-                </tr>
-                
-                
-                 <tr><td>Address</td>
-                     <td><textarea name="address" rows="3" cols="20" required><%=editaddress%>"</textarea>
-                 </tr>
-                 <tr>
+            <td>Re-Password</td>
+            <td><input class="text-box" type="password" required name="repass" placeholder="Re-Enter Password"></td>
+        </tr>
+        <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" name="update" value="Update">
-                        <input type="reset" name="cancel" value="Cancel">
+                        <input type="submit" name="update" value="Update" class="button">
+                        <input type="reset" name="cancel" value="Cancel" class="button">
                     </td>
                 </tr>
         </table>
         </form>
+        </div>
     </body>
+    <br> <br> <br> <br>
+     <%@include file="Foot.jsp" %>
+    </div>
+    </div>
 </html>

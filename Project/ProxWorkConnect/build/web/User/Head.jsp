@@ -36,18 +36,17 @@
         <div class="container-fluid">
           <div class="contact_link-container">
             <a href="" class="contact_link1">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <i class="fa fa-map-marker" aria-hidden="true"> ProxWorkConnect</i>
             </a>
-            <a href="" class="contact_link2">
-              <i class="fa fa-phone" aria-hidden="true"></i>
+           
               <span>
-                Call : +01 1234567890
+               
               </span>
             </a>
             <a href="" class="contact_link3">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
-                demo@gmail.com
+                pwc@gmail.com
               </span>
             </a>
           </div>
@@ -56,10 +55,10 @@
       <div class="header_bottom">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="../Assets/Templates/Main/js/index.html">
-              <span>
+            <a class="navbar-brand" href="../index.html">
+           <!--   <span>
                 ProxWorkConnect
-              </span>
+              </span>-->
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class=""></span>
@@ -67,7 +66,7 @@
              <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
               <ul class="navbar-nav  ">
                 <li class="nav-item ">
-                  <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="UserHomePage.jsp">Home <span class="sr-only">(current)</span></a>
                 </li>
                  <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,6 +94,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="RequestDisplay.jsp">Request Notifications</a>
           <a class="dropdown-item" href="BookingDisplay.jsp">Booking Notifications</a>
+           <a class="dropdown-item" href="ComplaintStatus.jsp">My complaints</a>
         </div>
       </li>
        <<li class="nav-item ">

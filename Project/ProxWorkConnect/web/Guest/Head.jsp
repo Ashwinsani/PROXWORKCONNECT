@@ -77,7 +77,7 @@
           Sign Up
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="../Guest/userregistration.jsp">User Sign Up</a>
+          <a class="dropdown-item" href="../Guest/UserRegistration.jsp">User Sign Up</a>
           <a class="dropdown-item" href="../Guest/WorkerRegistration.jsp">Labour Sign Up</a>
         </div>
       </li>

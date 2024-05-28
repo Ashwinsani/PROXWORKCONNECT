@@ -78,7 +78,9 @@
                 <tr>
                     <td>Proof</td>
                     <td>
-                        <input required type="file" name="proof" >
+                        <input required type="file" name="proof" ><br>
+                        *Kerala Shops and Commercial Establishments Workers Welfare Board membership id.
+
                     </td>
                 </tr>
                 <tr>
@@ -102,7 +104,7 @@
                 <tr>
                     <td>District</td>
                     <td>
-                        <select name="ddis" class="text-box" onchange="getPlace(this.value)">
+                        <select name="ddis"  onchange="getPlace(this.value)">
                             <option>--select--</option>
                             <%
                               String selqry1="select * from tbl_district";
@@ -121,7 +123,7 @@
                 <tr>
                     <td>Place</td>
                     <td>
-                        <select name="ddlplace" class="text-box" id="selplace">
+                        <select name="ddlplace"  id="selplace">
                             <option>--select--</option>
                             
                         </select>
@@ -130,7 +132,7 @@
                 <tr>
                     <td>Worker Type</td>
                     <td>
-                        <select name="ddltype" class="text-box">
+                        <select name="ddltype" >
                             <option>--select--</option>
                             <%
                               String selqry2="select * from tbl_workertype";

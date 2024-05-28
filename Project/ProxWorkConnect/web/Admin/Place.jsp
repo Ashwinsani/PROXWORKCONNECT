@@ -11,6 +11,42 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Place</title>
+     <style>
+         .bg-img{
+            background-image:url("../Assets/Templates/Main/images/Admin.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            }
+             .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+                border-radius: 2px;
+            }    
+                 .fonth{
+                 font-family: "Poppins", sans-serif;
+                color: white;
+                font-weight: bold; 
+                font-weight: italic; 
+                 }
+                
+            .fonty{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8;
+            }
+            .button{
+                background-color: #e0e032c2;
+            }
+            .fontw{
+                font-family: "Poppins", sans-serif;
+                color: white;
+            }
+            </style>
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
+    <%@include file="Head.jsp" %>
     </head>
     <body>
         <%
@@ -52,12 +88,15 @@
           }
         %>
         <form method="post">
-            <table border="3" align="center">
+            <div class="fonty">
+            <table cellpadding="10" align="center">
+                
+                <br>
                 <tr>
                 <td>District</td>
-                    <td>
+                    <td >
                         <select name="ddist">
-                            <option>--select district--</option>
+                            <option >--select district--</option>
                             <%
                               String selqry="select * from tbl_district";
                               ResultSet rs=con.selectCommand(selqry);
@@ -75,23 +114,28 @@
                 </tr>
                 <tr>
                 <td>Place</td>
-                <td><input type="text" name="placename" value="<%=editname%>" placeholder="Enter Place">
+                <td><input type="text" class="text-box" name="placename" value="<%=editname%>" placeholder="Enter Place">
                     <input type="hidden" name="placeid" value="<%=editid%>">
                     
                 </td>
                 </tr>
+               
                  <tr>
-                    <td colspan="2" align="center"><input type="submit" name="save" value="Save">
-                    <input type="reset" name="cancel" value="Cancel"></td>
+                    <td colspan="2" align="center"><input type="submit" class="button" name="save" value="Save">
+                    <input type="reset" class="button" name="cancel" value="Cancel"></td>
                 </tr>
-            </table><br>
-            <table border="1" align="center">
+               
+            </table>
+            </div><br><br>
+            <table cellpadding="10" align="center">
+                
                 <tr>
-                    <th>Sl.no</th>
-                    <th>District</th>
-                    <th>Place</th>
-                    <th>Action</th>
+                    <th div class="fontw">Sl.no</th>
+                    <th div class="fontw">District</th>
+                    <th div class="fontw">Place</th>
+                    <th div class="fontw">Action</th>
                 </tr>
+                
                 <%
                  String selectqry="select * from tbl_place p inner join tbl_district d on d.district_id=p.district_id";
                  ResultSet r=con.selectCommand(selectqry);
@@ -100,17 +144,26 @@
                  {
                      i++;
                      %>
+                     
                      <tr>
-                         <td><%=i%></td>
-                   <td><%=r.getString("district_name")%></td> 
-                 <td><%=r.getString("place_name")%></td> 
+                         <td div class="fonty"><%=i%></td>
+                   <td div class="fonty" ><%=r.getString("district_name")%></td> 
+                 <td div class="fonty"><%=r.getString("place_name")%></td> 
                  <td><a href="Place.jsp?did=<%=r.getString("place_id")%>">Delete</a>
                  |<a href="Place.jsp?eid=<%=r.getString("place_id")%>">Edit</a></td></tr>
+                
                   <%
                  }
                   %>
-                         
+                 
+                    
             </table>
+                                 
+                
         </form>
     </body>
+                  
+ <%@include file="Foot.jsp" %>
+     </div>
+    </div>
 </html>

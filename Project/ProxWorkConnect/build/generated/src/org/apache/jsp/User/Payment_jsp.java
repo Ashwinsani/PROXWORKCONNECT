@@ -59,7 +59,21 @@ public final class Payment_jsp extends org.apache.jasper.runtime.HttpJspBase
           _jspx_page_context.setAttribute("con", con, PageContext.PAGE_SCOPE);
         }
       }
-      out.write("\n");
+      out.write('\n');
+
+    String preq = request.getParameter("yid");
+    String selQry="select * from tbl_workrequest where workrequest_id='"+preq+"'";
+    ResultSet rs = con.selectCommand(selQry);
+    int worker_amt,perc,total=0;
+    if(rs.next())
+    {
+       
+        worker_amt=Integer.parseInt(rs.getString("request_amount"));
+        perc=(worker_amt/100)*10;
+        total=worker_amt+perc;
+    }
+
+
       out.write("\n");
       out.write("    <!DOCTYPE html>\n");
       out.write("    <html lang=\"en\">\n");
@@ -357,7 +371,9 @@ public final class Payment_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    </div>\t\n");
       out.write("                    <div class=\"input-group\">\n");
       out.write("                        <div class=\"input-box\">\n");
-      out.write("                            <input class=\"name\" type=\"number\" name=\"txt_amount\" min=\"500\" value=\"500\" id=\"txtemail\" placeholder=\"Amount\" required=\"required\">\n");
+      out.write("                            <input class=\"name\" type=\"text\" name=\"txt_amount\" placeholder=\"Amount\" readonly=\"\" value=\"");
+      out.print(total);
+      out.write("\" required=\"required\">\n");
       out.write("                            <i class=\"fa fa-envelope icon\" aria-hidden=\"true\"></i>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\t\n");
@@ -414,8 +430,37 @@ public final class Payment_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </form>\n");
       out.write("            </div>\n");
       out.write("\n");
-      out.write("       \n");
-      out.write("    </body>\n");
+      out.write("     ");
+
+
+            if (request.getParameter("btn_pay") != null) 
+                {
+                String upQ="update tbl_workrequest set request_status='6' where workrequest_id='"+request.getParameter("yid")+"'";
+                 
+                    if(con.executeCommand(upQ))
+                   {
+                        
+      out.write("\n");
+      out.write("                    <script>\n");
+      out.write("                            alert('Payment Successfull');\n");
+      out.write("                            window.location=\"RequestDisplay.jsp\";\n");
+      out.write("                    </script>\n");
+      out.write("                    ");
+
+                }
+                else{
+                      
+      out.write("\n");
+      out.write("                        <script>\n");
+      out.write("                            alert('Payment Failed');\n");
+      out.write("                            </script>       \n");
+      out.write("                ");
+
+                    }                
+                  }
+                
+      out.write("  \n");
+      out.write("   </body>\n");
       out.write("    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>\n");
       out.write("    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js'></script>\n");
       out.write("     ");

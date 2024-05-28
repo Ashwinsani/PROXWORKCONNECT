@@ -11,8 +11,37 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Admin Change Password</title>
+        <style>
+     .bg-img{
+            background-image:url("../Assets/Templates/Main/images/Admin.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            }
+             .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+                border-radius: 2px;
+            }    
+                
+                
+            .font{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8;
+            }
+            .button{
+                background-color: #e0e032c2;
+            }
+            </style>
     </head>
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
+    <%@include file="Head.jsp" %>
     <body>
+        <br> <br> <br>
+        <div class="font">
         <%  
         
        String currentpsswd=request.getParameter("psswd");
@@ -60,32 +89,36 @@
        }
     %>
         <form method="post">
-        <table border="3" align="center">
+        <table cellpadding="10" align="center">
         <tr>
             <td>Current Password</td>
                     <td>
-                        <input required type="password" name="psswd" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                        <input required  class="text-box" type="password" name="psswd" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                     </td>
                 </tr>
                 <tr>
             <td>New Password</td>
                     <td>
-                        <input required type="password" name="newpsswd" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                        <input  required type="password" class="text-box" name="newpsswd" placeholder="Enter Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                     </td>
                 </tr>
                 <tr>
             <td>Re-Password</td>
-            <td><input type="password" required name="repass" placeholder="Re-Enter Password"></td>
+            <td><input type="password" required name="repass" class="text-box" placeholder="Re-Enter Password"></td>
         </tr>
         <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" name="update" value="Update">
-                        <input type="reset" name="cancel" value="Cancel">
+                        <input type="submit" class="button" name="update" value="Update">
+                        <input type="reset" name="cancel" class="button" value="Cancel">
                     </td>
                 </tr>
         </table>
         </form>
     </body>
+ <br> <br> <br> <br>
+     <%@include file="Foot.jsp" %>
+    </div>
+    </div>
 </html>

@@ -11,6 +11,42 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Worker Verification</title>
+    <style>
+         .bg-img{
+            background-image:url("../Assets/Templates/Main/images/Admin.jpg");
+            background-repeat: repeat;
+            background-size:cover;
+            background-position: center;
+            }
+             .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+                border-radius: 2px;
+            }    
+                 .fonth{
+                 font-family: "Poppins", sans-serif;
+                color: white;
+                font-weight: bold; 
+                font-weight: italic; 
+                 }
+                
+            .fonty{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8;
+            }
+            .button{
+                background-color: #e0e032c2;
+            }
+            .fontw{
+                font-family: "Poppins", sans-serif;
+                color: white;
+            }
+            </style>
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
+    <%@include file="Head.jsp" %>
     </head>
     <body>
      <%
@@ -30,18 +66,18 @@
          }
          
         %>
+        <br><Br>
         <div align="center">
-        <h2>New Worker</h2>
-        <table border="1" align="center">
+        <h2 class="fonth">New Worker</h2>
+        <table cellpadding="10" align="center">
                 <tr>
-                    <th>Sl.no</th>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Photo</th>
-                    <th>Proof</th>
-                    <th>Place</th>
-                    <th>Workertype</th>
-                    <th>Action</th>
+                    <th div class="fonty">Sl.no</th>
+                    <th div class="fonty">Name</th>
+                    <th div class="fonty">Contact</th>
+                    <th div class="fonty" >Proof</th>
+                    <th div class="fonty">Place</th>
+                    <th div class="fonty">Workertype</th>
+                    <th div class="fonty">Action</th>
                 </tr>
                 <%
                  String selqry="select * from tbl_worker w inner join tbl_place p on p.place_id=w.place_id inner join tbl_workertype t on t.workertype_id=w.workertype_id where w.worker_isactive='0'";
@@ -52,13 +88,13 @@
                      i++;
                      %>
                      <tr>
-                         <td><%=i%></td>
-                         <td><%=rs.getString("worker_name")%></td>
-                         <td><%=rs.getString("worker_contact")%></td>
-                         <td><%=rs.getString("worker_photo")%></td>
-                         <td><%=rs.getString("worker_proof")%></td>
-                         <td><%=rs.getString("place_name")%></td>
-                         <td><%=rs.getString("workertype_name")%></td>
+                         <td div class="fontw"><%=i%></td>
+                         <td div class="fontw"<%=rs.getString("worker_name")%></td>
+                         <td div class="fontw"><%=rs.getString("worker_contact")%></td>
+                         <td div class="fontw"><%=rs.getString("worker_photo")%></td>
+                         <td div class="fontw"><%=rs.getString("worker_proof")%></td>
+                         <td div class="fontw"><%=rs.getString("place_name")%></td>
+                         <td div class="fontw"><%=rs.getString("workertype_name")%></td>
                          
                          
                           <td><a href="WorkerVerification.jsp?aid=<%=rs.getString("worker_id")%>">Accept</a>
@@ -69,17 +105,20 @@
                      %>      
                     
             </table>
-            <h2>Accepted Worker</h2>         
-                <table border="1" align="center">
+                      <br><br>
+            <h2 class="fonth">Accepted Worker</h2>         
+                <table cellpadding="10" align="center">
                 <tr>
-                    <th>Sl.no</th>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Photo</th>
-                    <th>Proof</th>
-                    <th>Place</th>
-                    <th>Workertype</th>
-                    <th>Action</th>
+                    
+                    <th div class="fonty">Sl.no</th>
+                    <th div class="fonty">Name</th>
+                    <th div class="fonty">Contact</th>
+                    <th div class="fonty">Photo</th>
+                    <th div class="fonty">Proof</th>
+                    <th div class="fonty">Place</th>
+                    <th div class="fonty">Workertype</th>
+                    <th div class="fonty">Action</th>
+                    </div>
                 </tr>
         <%
                  String selqry1="select * from tbl_worker w inner join tbl_place p on p.place_id=w.place_id inner join tbl_workertype t on t.workertype_id=w.workertype_id where w.worker_isactive='1'";
@@ -90,13 +129,13 @@
                      j++;
                      %>
                      <tr>
-                         <td><%=j%></td>
-                         <td><%=rs1.getString("worker_name")%></td>
-                         <td><%=rs1.getString("worker_contact")%></td>
-                         <td><%=rs1.getString("worker_photo")%></td>
-                         <td><%=rs1.getString("worker_proof")%></td>
-                         <td><%=rs1.getString("place_name")%></td>
-                         <td><%=rs1.getString("workertype_name")%></td>
+                         <td div class="fontw"><%=j%></td>
+                         <td div class="fontw"><%=rs1.getString("worker_name")%></td>
+                         <td div class="fontw"><%=rs1.getString("worker_contact")%></td>
+                         <td div class="fontw"><%=rs1.getString("worker_photo")%></td>
+                         <td div class="fontw"><%=rs1.getString("worker_proof")%></td>
+                         <td div class="fontw"><%=rs1.getString("place_name")%></td>
+                         <td div class="fontw"><%=rs1.getString("workertype_name")%></td>
                          
                           <td>
                          <a href="WorkerVerification.jsp?rid=<%=rs1.getString("worker_id")%>">Reject</a></td>
@@ -105,17 +144,18 @@
                  }
                      %>      
              </table>
-             <h2>Rejected Worker</h2>         
-                  <table border="1" align="center">
+             <br><br>
+             <h2 class="fonth">Rejected Worker</h2>         
+                  <table cellpadding="10" align="center">
                 <tr>
-                    <th>Sl.no</th>
-                    <th>Name</th>
-                    <th>Contact</th>
-                    <th>Photo</th>
-                    <th>Proof</th>
-                    <th>Place</th>
-                    <th>Workertype</th>
-                    <th>Action</th>
+                    <th div class="fonty">Sl.no</th>
+                    <th div class="fonty">Name</th>
+                    <th div class="fonty">Contact</th>
+                    <th  div class="fonty">Photo</th>
+                    <th div class="fonty">Proof</th>
+                    <th div class="fonty">Place</th>
+                    <th div class="fonty">Workertype</th>
+                    <th div class="fonty">Action</th>
                 </tr>
         <%
                  String selqry2="select * from tbl_worker w inner join tbl_place p on p.place_id=w.place_id inner join tbl_workertype t on t.workertype_id=w.workertype_id where w.worker_isactive='2'";
@@ -126,13 +166,13 @@
                      k++;
                      %>
                      <tr>
-                         <td><%=k%></td>
-                         <td><%=rs2.getString("worker_name")%></td>
-                         <td><%=rs2.getString("worker_contact")%></td>
-                         <td><%=rs2.getString("worker_photo")%></td>
-                         <td><%=rs2.getString("worker_proof")%></td>
-                         <td><%=rs2.getString("place_name")%></td>
-                         <td><%=rs2.getString("workertype_name")%></td>
+                         <td div class="fontw"><%=k%></td>
+                         <td div class="fontw"><%=rs2.getString("worker_name")%></td>
+                         <td div class="fontw"><%=rs2.getString("worker_contact")%></td>
+                         <td div class="fontw"><%=rs2.getString("worker_photo")%></td>
+                         <td div class="fontw"><%=rs2.getString("worker_proof")%></td>
+                         <td div class="fontw"><%=rs2.getString("place_name")%></td>
+                         <td div class="fontw"><%=rs2.getString("workertype_name")%></td>
                          
                           <td><a href="WorkerVerification.jsp?aid=<%=rs2.getString("worker_id")%>">Accept</a>
                          </td>
@@ -144,4 +184,8 @@
             
         </div>     
     </body>
+    <br><br>
+<%@include file="Foot.jsp" %>
+        </div>
+    </div>
 </html>

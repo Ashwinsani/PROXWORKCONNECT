@@ -12,16 +12,67 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Uploaded Works</title>
+        <style>
+        .cont {
+                    display: flex;
+                    width: 200px;
+                    justify-content: space-between;
+            }
+            .sub {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 7px;
+                    padding: 22px;
+                    background-color: #65720866;
+                    border-radius: 17px;
+            }
+            .main {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 2rem;
+            }
+              .bg-img{
+            background-image:url("../Assets/Templates/Main/images/userhome1.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            }
+             .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+               border-radius: 2px;
+             }
+                
+            .font{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8;
+                
+            }
+            .fonth1{
+                font-family: "Poppins", sans-serif;
+                color:white;
+                font-weight: bold;
+            }
+    </style>
     </head>
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
     <%@include file="Head.jsp" %>
     <body>
         <div align="center">
-        <h2>Uploaded Works</h2>
-         
+        <h2 class="fonth1">Uploaded Works</h2>
+        <br>
+        <div class="font">
         <form method="post">
-        <table border="3" align="center">
+       <div class="main">
                
-                <tr>
+               <!-- <tr>
                     <th>Sl.no</th>
                     <th>Photo</th>
                     <th>Details</th>
@@ -29,7 +80,7 @@
                     <th>Posted Date</th>
          
                     <th>Image Gallery</th>
-                </tr>
+                </tr>-->
         <%
                  String selqry = "select*from tbl_workpost where worker_id='"+request.getParameter("sid")+"'"; 
                  
@@ -39,25 +90,35 @@
                  {
                      i++;
                      %>
-                     <tr>
-                         <td><%=i%></td>
-                         <td><img src="../Assets/Files/WorkPostPhoto/<%=rs.getString("workpost_image")%>" height="70" width="70"</td></td>
-                          <td><%=rs.getString("workpost_details")%></td>
-                         <td><%=rs.getString("workpost_duration")%></td>
-                         <td><%=rs.getString("workpost_date")%></td>
+                     <div class="sub">
+                        
+                         <div><img src="../Assets/Files/WorkPostPhoto/<%=rs.getString("workpost_image")%>" height="70" width="70"</div>
+                         <div class="cont"><div>Details</div><div><%=rs.getString("workpost_details")%></div></div>
+                         <div class="cont"><div>duration</div><div><%=rs.getString("workpost_duration")%></div></div>
+                         <div class="cont"><div>Post date</div><div><%=rs.getString("workpost_date")%></div></div>
                          
-                         <td><a href="ViewWorkGallery.jsp?sid=<%=rs.getString("workpost_id")%> ">View Gallery</a></td>
+                         <div><a href="ViewWorkGallery.jsp?sid=<%=rs.getString("workpost_id")%> ">View Gallery</a></div>
                      </tr>
+                     
+                      </div>
+                     </div>
+                     
                      <%
                  }
-                     %>      
+                     %>  
+                     </div>
              </table>
         </form>
-             </div>        
+                   
          
-    </body>
-</html>
+
 
     </body>
-     <%@include file="Foot.jsp" %>
+        
+     
+     
+        </div>
+             <br><br>
+            <%@include file="Foot.jsp" %>
+    </div>
 </html>

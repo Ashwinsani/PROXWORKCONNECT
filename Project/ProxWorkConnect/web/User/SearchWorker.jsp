@@ -174,7 +174,8 @@
                    <div class="cont"><div>Contact</div><div><%=r.getString("worker_contact")%></div></div>
                 
                     <div><a href="ViewWork.jsp?sid=<%=r.getString("worker_id")%> ">View Works</a></div>
-                    <div><a href="Request.jsp?eid=<%=r.getString("worker_id")%>">Request Now</a></div>
+                    <div><a href="ViewReview.jsp?gid=<%=r.getString("worker_id")%> ">View Ratings</a></div>
+                    <div><a href="Request.jsp?rid=<%=r.getString("worker_id")%>">Request Now</a></div>
                       </div>
                   <%
                  }

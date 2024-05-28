@@ -19,9 +19,24 @@
             background-size:cover;
             background-position: center;
             }
+              .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+               border-radius: 2px;
+            }    
+             .font{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8; 
+            }
+            .button{
+                background-color: yellow;
+            }
             </style>
     </head>
-    <div class="bg-img"
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
     <%@include file="Head.jsp" %>
     <body>
         <%
@@ -32,39 +47,43 @@
         %>
         <script>
                 alert("Booked Successfully");
-              window.location="HomePageUser.jsp";
+              window.location="UserHomePage.jsp";
             </script>
          <%
           }
           %>
+          <div class="font">
         <form method="post">
-            <table border="3" align="center">
+            <table cellpadding="10" align="center">
         <tr>
                         <td>Details</td>
                         <td align="center">
-                            <textarea name="txt_details" id="txt_details" cols="45" rows="5"></textarea></td>
+                            <textarea class="text-box" name="txt_details" id="txt_details" cols="45" rows="5"></textarea></td>
                     </tr>
                      <tr>
                         <td>Address</td>
                         <td align="center">
-                            <textarea name="txt_address" id="txt_address" cols="45" rows="5"></textarea></td>
+                            <textarea class="text-box" name="txt_address" id="txt_address" cols="45" rows="5"></textarea></td>
                     </tr>
                      <tr>
                     <td>Work Date</td>
                     <td>
-                        <input type="date" name="date" placeholder="Enter Date of Work" required>
+                        <input  type="date" name="date" placeholder="Enter Date of Work" required>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
-                        <input type="submit" name="book" value="Book">
-                        <input type="reset" name="cancel" value="Cancel">
+                        <input type="submit" name="book" value="Book" class="button">
+                        <input type="reset" name="cancel" value="Cancel" class="button">
                     </td>
                 </tr>
             </table>
         </form>
+          </div>
     </body>
+    <BR><br>
      <%@include file="Foot.jsp" %>
+    </div>
     </div>
 </html>
  

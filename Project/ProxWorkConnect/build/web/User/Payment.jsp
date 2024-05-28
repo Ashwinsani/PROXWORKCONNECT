@@ -6,7 +6,20 @@
 
 <%@page import="java.sql.ResultSet"%>
 <jsp:useBean class="DB.ConnectionClass" id="con"></jsp:useBean>
+<%
+    String preq = request.getParameter("yid");
+    String selQry="select * from tbl_workrequest where workrequest_id='"+preq+"'";
+    ResultSet rs = con.selectCommand(selQry);
+    int worker_amt,perc,total=0;
+    if(rs.next())
+    {
+       
+        worker_amt=Integer.parseInt(rs.getString("request_amount"));
+        perc=(worker_amt/100)*10;
+        total=worker_amt+perc;
+    }
 
+%>
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -190,7 +203,7 @@
                     </div>	
                     <div class="input-group">
                         <div class="input-box">
-                            <input class="name" type="number" name="txt_amount" min="500" value="500" id="txtemail" placeholder="Amount" required="required">
+                            <input class="name" type="text" name="txt_amount" placeholder="Amount" readonly="" value="<%=total%>" required="required">
                             <i class="fa fa-envelope icon" aria-hidden="true"></i>
                         </div>
                     </div>	
@@ -247,8 +260,31 @@
                 </form>
             </div>
 
-       
-    </body>
+     <%
+
+            if (request.getParameter("btn_pay") != null) 
+                {
+                String upQ="update tbl_workrequest set request_status='6' where workrequest_id='"+request.getParameter("yid")+"'";
+                 
+                    if(con.executeCommand(upQ))
+                   {
+                        %>
+                    <script>
+                            alert('Payment Successfull');
+                            window.location="RequestDisplay.jsp";
+                    </script>
+                    <%
+                }
+                else{
+                      %>
+                        <script>
+                            alert('Payment Failed');
+                            </script>       
+                <%
+                    }                
+                  }
+                %>  
+   </body>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js'></script>
      <%@include file="Foot.jsp" %>

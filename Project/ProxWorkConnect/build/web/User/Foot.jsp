@@ -22,14 +22,14 @@
             <ul>
               <li>
                   <div>
-                  <a href="#home" >
+                  <a href="UserHomePage.jsp" >
                   Home
                   </a>
                   </div>
               </li>
               <li>
                 <div>
-                <a href="#about">
+                <a href="../#about">
                   About us
                 </a>
                 </div>

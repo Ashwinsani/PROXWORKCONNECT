@@ -11,6 +11,42 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Location</title>
+     <style>
+         .bg-img{
+            background-image:url("../Assets/Templates/Main/images/Admin.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            }
+             .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+                border-radius: 2px;
+            }    
+                 .fonth{
+                 font-family: "Poppins", sans-serif;
+                color: white;
+                font-weight: bold; 
+                font-weight: italic; 
+                 }
+                
+            .fonty{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8;
+            }
+            .button{
+                background-color: #e0e032c2;
+            }
+            .fontw{
+                font-family: "Poppins", sans-serif;
+                color: white;
+            }
+            </style>
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
+    <%@include file="Head.jsp" %>
     </head>
     <body>
         <%
@@ -30,9 +66,10 @@
          
         %>
         <form method="post">
-            <table border="3" align="center">
+            <br>
+            <table cellpadding="10" align="center">
                 <tr>
-                    <td>District</td>
+                    <td class="fonty">District</td>
                     <td><select name="seldis" onchange="getPlace(this.value)">
                             <option>--select district--</option>
                             <%
@@ -52,31 +89,32 @@
                         </select></td>
                 </tr>
                  <tr>
-                    <td>Place</td>
+                    <td class="fonty">Place</td>
                     <td><select name="selpla" id="selplace">
                             <option>--select place--</option>
                             
                         </select></td>
                 </tr>
                 <tr>
-                    <td>Location</td>
+                    <td class="fonty">Location</td>
                     <td><input type="text" name="locname" placeholder="Enter Location"></td>
                     <td><input type="hidden" name="locid"></td>
                     
                 </tr>
                 <tr>
-                    <td colspan="2" align="center"><input type="submit" name="save" value="Save">
-                    <input type="reset" name="cancel" value="Cancel"></td>
+                    <td colspan="2" align="center"><input type="submit"  class="button"name="save" value="Save">
+                        <input type="reset" name="cancel"  class="button" value="Cancel"></td>
                 </tr>
             </table>
         </form>
-        <table border="1" align="center">
+                        <br><br>
+        <table cellpadding="10" align="center">
                 <tr>
-                    <th>Sl.no</th>
-                    <th>District</th>
-                    <th>Place</th>
-                    <th>Location</th>
-                    <th>Action</th>
+                    <th class="fontw"> Sl.no</th>
+                    <th class="fontw">District</th>
+                    <th class="fontw">Place</th>
+                    <th class="fontw">Location</th>
+                    <th class="fontw">Action</th>
                 </tr>
                 <%
                  String selectqry="select * from tbl_location t inner join tbl_place p on p.place_id = t.place_id inner join tbl_district d on d.district_id=p.district_id ";
@@ -87,10 +125,10 @@
                      i++;
                      %>
                      <tr>
-                         <td><%=i%></td>
-                   <td><%=r.getString("district_name")%></td> 
-                 <td><%=r.getString("place_name")%></td> 
-                 <td><%=r.getString("location_name")%></td> 
+                         <td class="fonty"><%=i%></td>
+                   <td class="fonty"><%=r.getString("district_name")%></td> 
+                 <td class="fonty"><%=r.getString("place_name")%></td> 
+                 <td class="fonty"><%=r.getString("location_name")%></td> 
                  <td><a href="Location.jsp?did=<%=r.getString("location_id")%>">Delete</a>
                  </td></tr>
                   <%
@@ -112,4 +150,9 @@
                             }
                            
                         </script>
+                        <br><br>
+ <%@include file="Foot.jsp" %>
+     </div>
+    </div>
 </html>
+

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : userregistration.jsp
+    Document   : UserRegistration.jsp
     Created on : 15 Dec, 2023, 1:42:46 PM
     Author     : ashwi
 --%>
@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <title>User registration</title>
          <style>
@@ -113,7 +114,7 @@
                 <tr>
                     <td>District</td>
                     <td>
-                        <select name="ddist" onchange="getPlace(this.value)"class="text-box">
+                        <select name="ddist" onchange="getPlace(this.value)">
                             <option value="" ">---select district---</option>
                                      <%
                         String selqry="select * from tbl_district";
@@ -131,7 +132,7 @@
                 <tr>
                     <td>Place</td>
                     <td>
-                        <select name="ddlplace" class="text-box" id="selplace" onchange="getlocation(this.value)">
+                        <select name="ddlplace" id="selplace" onchange="getlocation(this.value)">
                              <option value="">--select--</option>
                               <%
                         String selqry1="select * from tbl_place";
@@ -150,7 +151,7 @@
                 <tr>
                     <td>Location</td>
                     <td>
-                        <select name="ddlloc" class="text-box" id="sellocation">
+                        <select name="ddlloc"  id="sellocation">
                             <option value="">--select--</option>
                         </select>
                     </td>

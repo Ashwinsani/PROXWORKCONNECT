@@ -17,8 +17,10 @@
           if(request.getParameter("request")!=null){
               String amount=request.getParameter("amt");
               String remarks=request.getParameter("txt_remarks");
-              String upsqry="update tbl_workrequest set request_amount='"+amount+"',request_remarks='"+remarks+"' where workrequest_id='"+request.getParameter("nid")+"'";
+              String upsqry="update tbl_workrequest set request_amount='"+amount+"',request_remarks='"+remarks+"',request_status='5' where workrequest_id='"+request.getParameter("nid")+"'";
               con.executeCommand(upsqry);
+            
+         
         %>
         <script>
                 alert("Payment Requested");
