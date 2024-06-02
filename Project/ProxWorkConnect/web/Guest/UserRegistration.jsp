@@ -1,7 +1,8 @@
+
 <%-- 
-    Document   : UserRegistration.jsp
-    Created on : 15 Dec, 2023, 1:42:46 PM
-    Author     : ashwi
+    Document   : UserRegistration
+    Created on : 11 Dec, 2023, 10:26:41 PM
+    Author     : abhij
 --%>
 <jsp:useBean class="DB.ConnectionClass" id="con"></jsp:useBean>
 <%@page import="java.sql.ResultSet"%>
@@ -9,11 +10,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-        <title>User registration</title>
-         <style>
-        .bg-img{
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>User Registration</title>
+     <style>
+         .bg-img{
             background-image:url("../Assets/Templates/Main/images/user reg2.jpg");
             background-repeat: no-repeat;
             background-size:cover;
@@ -45,60 +45,56 @@
     <%@include file="Head.jsp" %>
        <body>
         <div class="font">
-        <form method="post"  enctype="multipart/form-data" action="../Assets/ActionPages/UserUploadAction.jsp" >
-            <br> 
-           
+    <body>
+        <form method="post" enctype="multipart/form-data" action="../Assets/ActionPages/UserUploadAction.jsp">
+            
             <table align="center" cellpadding="15">
-                
                 <tr>
                     <td>Name</td>
                     <td>
-                        <input type="text" name="name" class="text-box" placeholder="Enter Name"  title="Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter" pattern="^[A-Z]+[a-zA-Z ]*$"
-                               
-                    </td>
+                        <input required type="text" class="text-box" name="name" placeholder="Enter Name" title="Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter" pattern="^[A-Z]+[a-zA-Z ]*$">
+                   </td>
                 </tr>
-                
                 <tr>
                     <td>Contact</td>
                     <td>
-                        <input required type="text" class="text-box" name="contact" placeholder="Enter Contact No"  pattern="[7-9]{1}[0-9]{9}" 
-                title="Phone number with 7-9 and remaing 9 digit with 0-9">
+                        <input required type="text" class="text-box" name="contact" placeholder="Enter Contact No" title="Phone number with 7-9 and remaining 9 digit with 0-9" pattern="[7-9]{1}[0-9]{9}">
                     </td>
                 </tr>
                 <tr>
                     <td>Email</td>
                     <td>
-                        <input  required type="email" class="text-box" name="email" placeholder="Enter Email-Id">
+                        <input required type="email"  class="text-box"  class="text-box" name="email" placeholder="Enter Email-Id">
                     </td>
                 </tr>
                 
                 
                  <tr><td>Address</td>
-                     <td><textarea required name="address" rows="3" cols="10" class="text-box"></textarea>
+                     <td><textarea name="address" rows="3" cols="10" class="text-box"  required></textarea>
                  </tr>
-                <tr>
+                
                     <tr>
                     <td>DOB</td>
                     <td>
-                        <input type="text" class="text-box" required name="dob"placeholder="Enter DateOfBirth" >
+                        <input  class="text-box"  type="date" name="dob"placeholder="Enter DateOfBirth" required>
                     </td>
                 </tr>
                  <tr>
                     <td>Photo</td>
                     <td align="center">
-                        <input  required type="file" name="photo">
+                        <input required type="file" name="photo">
                     </td>
                 </tr>
                 <tr>
                   <td>Gender</td>
                     <td>
-                        Male<input type="radio" name="gender">
+                        Male<input required type="radio" name="gender">
                         Female<input type="radio" name="gender">
                         Others<input type="radio" name="gender">
                     </td>
                 </tr>
               
-                <tr>
+       <tr>
                  <tr>
                     <td>Password</td>
                     <td>
@@ -114,91 +110,87 @@
                 <tr>
                     <td>District</td>
                     <td>
-                        <select name="ddist" onchange="getPlace(this.value)">
-                            <option value="" ">---select district---</option>
-                                     <%
-                        String selqry="select * from tbl_district";
-                        ResultSet rs=con.selectCommand(selqry);
-                        while(rs.next())
-                        {
+                        <select name="ddldis" onchange="getPlace(this.value)" required>
+                            <option value="">--select--</option>
+                             <%
+                              String selqry1="select * from tbl_district";
+                              ResultSet rs1=con.selectCommand(selqry1);
+                              while(rs1.next())
+                              {
+                              
                             %>
-                            <option value="<%=rs.getString("district_id")%>"><%=rs.getString("district_name")%></option>
-                              <%
-                        }
-                        %>                        
+                            <option value="<%=rs1.getString("district_id")%>"><%=rs1.getString("district_name")%></option>
+                            <%
+                              }
+                            %>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Place</td>
                     <td>
-                        <select name="ddlplace" id="selplace" onchange="getlocation(this.value)">
-                             <option value="">--select--</option>
-                              <%
-                        String selqry1="select * from tbl_place";
-                        ResultSet rs1=con.selectCommand(selqry1);
-                        while(rs1.next())
-                        {
+
+<select name="ddlplace" id="selplace" onchange="getLocation(this.value)" required>
+                            <option value="">--select--</option>
+                            <%
+                              String selqry="select * from tbl_place";
+                              ResultSet rs=con.selectCommand(selqry);
+                              while(rs.next())
+                              {
+                              
                             %>
-                            <option value="<%=rs1.getString("place_id")%>"><%=rs1.getString("place_name")%></option>
-                              <%
-                        }
-                        %>                        
-                           
+                            <option value="<%=rs.getString("place_id")%>"><%=rs.getString("place_name")%></option>
+                            <%
+                              }
+                            %>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td>Location</td>
                     <td>
-                        <select name="ddlloc"  id="sellocation">
+                        <select name="ddlloc" id="sellocation" required>
                             <option value="">--select--</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" align="center" >
-                        <input type="submit" name="save" value="Save" class="button">
-                        <input type="reset" name="cancel" value="Cancel" class="button">
+                    <td colspan="2" align="center">
+                        <input type="submit" name="save" value="Save">
+                        <input type="reset" name="cancel" value="Cancel">
                     </td>
                 </tr>
-                
-            </table> 
-            
+            </table>
         </form>
-          
-     </body>
-      <script src="../Assets/JQuery/jQuery.js"></script>         
+                        
+    </body>
+    <script src="../Assets/JQuery/jQuery.js"></script>         
                             <script>
                               function getPlace(did)
                             {
                               
-                           // alert(did);  
+                           //  alert(did);  
                                 $.ajax({url:"../Assets/AjaxPages/AjaxPlaces.jsp?pid=" + did,
                                 success: function(result){
-                                    //alert(result);
                                     $("#selplace").html(result);
                                 }
                             })
                             }
-                           
-                          function getlocation(did)
+                             function getLocation(did)
                             {
                               
-                           // alert(did);  
+                           //  alert(did);  
                                 $.ajax({url:"../Assets/AjaxPages/AjaxLocation.jsp?pid=" + did,
                                 success: function(result){
-                                    //alert(result);
                                     $("#sellocation").html(result);
                                 }
                             })
                             }
-            
-                            </script>
-                            <br><br><br><br><br><br><br><br>
+                           
+                        </script>
+          <br><br><br><br><br><br><br><br>
                     
     <%@include file="Foot.jsp" %>
        </div>
         </div> 
        </div>
-</html>

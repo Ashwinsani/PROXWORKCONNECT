@@ -3,6 +3,9 @@
     Created on : 4 Jan, 2024, 11:34:02 AM
     Author     : ashwi
 --%>
+
+<%@page import="java.sql.ResultSet"%>
+
 <jsp:useBean class="DB.ConnectionClass" id="con"></jsp:useBean>
 
 <%@page import="java.sql.*" %>
@@ -28,8 +31,7 @@
             String field_name = "";
             String file_name = "";
             String ph = "";
-            String pr ="";
-
+            String pf="";
             String field[] = new String[20];
             String value[] = new String[20];
 //enctype="multipart/form-data"
@@ -78,7 +80,7 @@
                             String ext = file_name.substring(file_name.lastIndexOf("."));
                             //setting path to store image
                             File proj_path = new File(config.getServletContext().getRealPath("/"));
-                            String file_path = proj_path.getParentFile().getParentFile().getPath() + "\\web\\Assets\\Files\\WorkerPhoto\\";
+                            String file_path = proj_path.getParentFile().getParentFile().getPath() + "\\web\\Assets\\Files\\Workerphoto\\";
                             Random r = new Random();
                             int r_num = r.nextInt(1111) + 999;
 
@@ -98,13 +100,13 @@
                             String ext = file_name.substring(file_name.lastIndexOf("."));
                             //setting path to store image
                             File proj_path = new File(config.getServletContext().getRealPath("/"));
-                            String file_path = proj_path.getParentFile().getParentFile().getPath() + "\\web\\Assets\\Files\\WorkerProof\\";
+                            String file_path = proj_path.getParentFile().getParentFile().getPath() + "\\web\\Assets\\Files\\Workerproof\\";
                             Random r = new Random();
                             int r_num = r.nextInt(1111) + 999;
 
-                            pr = "WorkerProof_" + r_num + ext;
+                            pf = "WorkerProof_" + r_num + ext;
                             //creating a file object
-                            savedFile = new File(file_path + pr);
+                            savedFile = new File(file_path + pf);
                             try {
                                 //writing the file object
                                 f_item.write(savedFile);
@@ -118,12 +120,10 @@
                     }
 
                 }
-                 System.out.println(value[2]);       
                 if(value[5].equals(value[6]))
                 {
-                                                
                 String str1 = "insert into tbl_worker(worker_name,worker_contact,worker_email,worker_address,worker_photo,worker_proof,worker_dob,worker_password,place_id,workertype_id,worker_doj)"
-                        + "values('" + value[0] + "','" + value[1] + "','" + value[2] + "','" + value[3] + "','" + ph + "','" + pr + "','" + value[4] + "','" + value[5] + "','" + value[8] + "','" + value[9] + "',curdate())";
+                        + "values('" + value[0] + "','" + value[1] + "','" + value[2] + "','" + value[3] + "','" + ph + "','" + pf + "','" + value[4] + "','" + value[5] + "','" + value[8] + "','" + value[9] + "',curdate())";
 
                 System.out.println(str1);       
 
@@ -134,26 +134,26 @@
         <script type="text/javascript" >
             alert("Upload Successfully..");
             setTimeout(function() {
-                window.location.href = '../../Guest/WorkerRegistration.jsp'
+                window.location.href = '../../Guest/Login.jsp'
             }, 100);
         </script>
         <%
                 }
             }
-                else
-                {
-                 %>
+          else
+                 {
+                     %>
         <script type="text/javascript" >
-            alert("Mismatch Password..");
+            alert("Password mismatch..");
             setTimeout(function() {
-              window.location.href = '../../Guest/WorkerRegistration.jsp'
+                window.location.href = '../../Guest/Login.jsp'
             }, 100);
         </script>
         <%
-            }
-
-            }
+                }
+                 }   
+        %>
 
         %>
     </body>
-</html>
+</html>W

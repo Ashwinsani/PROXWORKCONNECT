@@ -1,8 +1,4 @@
-<%-- 
-    Document   : login
-    Created on : 5 Jan, 2024, 4:25:01 PM
-    Author     : ashwi
---%>
+
 <%-- 
     Document   : login
     Created on : 5 Jan, 2024, 4:25:01 PM
@@ -79,10 +75,30 @@
                      }     
              else if(rs2.next())
                      {
+                         if(rs2.getString("worker_isactive").equals("0")){
+                             %>
+                             <script>
+                            alert('Verification Pending');
+                            window.location="../index.html";
+                           </script> 
+                       <% 
+                         }
+                           else if(rs2.getString("worker_isactive").equals("2")){
+                             %>
+                             <script>
+                            alert('Verification Rejected Due To Invalid Credentials');
+                            window.location="../index.html";
+                           </script> 
+                       <% 
+                         }
+
+else{
+                         
                        session.setAttribute("wid",rs2.getString("worker_id"));
                        session.setAttribute("wname",rs2.getString("worker_name"));
                        response.sendRedirect("../Worker/WorkerHomePage.jsp");
-                     }
+                        }
+                     }     
              else if(rs3.next())
                      {
                        session.setAttribute("aid",rs3.getString("admin_id"));

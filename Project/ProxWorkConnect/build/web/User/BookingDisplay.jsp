@@ -65,7 +65,7 @@
                     <th class="font">Action</th>
                 </tr>
                 <%
-                 String selqry="select * from tbl_workpostrequest w inner join tbl_workpost p on p.workpost_id=w.workpost_id inner join tbl_worker r on r.worker_id=p.worker_id";
+                 String selqry="select * from tbl_workpostrequest w inner join tbl_workpost p on p.workpost_id=w.workpost_id inner join tbl_worker r on r.worker_id=p.worker_id and w.user_id='" + session.getAttribute("uid") + "'";
                  ResultSet rs=con.selectCommand(selqry);
                  int i=0;
                  while(rs.next())
@@ -96,19 +96,19 @@
                                 {
                                     out.println("Work started");
                                 }
-                               else if (rs.getInt("request_status")==4 || rs.getInt("request_status")==5)
+                               else if (rs.getInt("request_status")==4)
                                 {
                                     out.println("Work completed");
                                 }
-                              else if(rs.getInt("request_status")==6)
+                              else if(rs.getInt("request_status")==5)
                               {
                                  out.println("Payment Done"); 
                               }
-                              else if(rs.getInt("request_status")==7)
+                              else if(rs.getInt("request_status")==6)
                               {
                                  out.println("Ended"); 
                                  %>
-                                 <a href="ReviewWork.jsp?gid=<%=rs.getString("request_id")%>"><br>Rate Now</a>
+                                 <a href="ReviewWork.jsp?gid=<%=rs.getString("workpost_id")%>">Rate Now</a>
                                  <%
                               }
                        %> 
@@ -129,16 +129,20 @@
                               <a href="ComplaintWork.jsp?cid=<%=rs.getString("workpost_id")%>">Complaints</a><br>
                               <%
                                }
-                              if(rs.getInt("request_status")==5)
+                              if(rs.getInt("request_status")==4)
                               {
-                               int worker_amt=Integer.parseInt(rs.getString("request_amount"));
-                               int perc=(worker_amt/100)*10;
-                               int total=worker_amt+perc;
+                               int amt,perc,total=0;
+                               String worker_amt=rs.getString("workpost_amount");
+                               amt = Integer.parseInt(worker_amt);
+//                               System.out.println(worker_amt);
+                               perc=(amt/100)*5;
+                               total=amt+perc;
+//                               System.out.println(total);
+//                               System.out.println(perc);
                               %>  
                               
                               Amount : <%out.println(total);%><br>
-                              Remarks : <%=rs.getString("request_remarks")%><br>
-                              
+
                               <a href="PaymentBooking.jsp?yid=<%=rs.getString("request_id")%>">Pay Now</a>
                              <%
                                  }

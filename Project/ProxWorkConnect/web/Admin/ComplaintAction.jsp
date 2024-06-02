@@ -23,21 +23,23 @@
                 color:white;
                 border-radius: 10px;
             }    
-                 .fonth{
+               .fonth{
                  font-family: "Poppins", sans-serif;
                 color: white;
                 font-weight: bold; 
                 font-weight: italic; 
-                 }
-                
-            .font0{
+            }
+             .fonty{
                 font-family: "Poppins", sans-serif;
-                color: #ffef19b8;
+                color: #ffef19b8; 
+            }
+            .fontw{
+                font-family: "Poppins", sans-serif;
+                color: white;
+                
             }
             .button{
                 background-color: #e0e032c2;
-            }
-            
             </style>
     </head>
     <div class="bg-img">
@@ -45,7 +47,7 @@
     <%@include file="Head.jsp" %>
     </head>
         <body> 
-            <h1 class="fonth" align="center">Labour Complaint </h1>
+            <br>   
             
         <%
             String seleQry = "select * from tbl_complaint f inner join tbl_user u on f.user_id=u.user_id inner join tbl_worker w on w.worker_id=f.worker_id where f.complaint_id ='" + request.getParameter("pid") + "'";
@@ -53,45 +55,46 @@
             if (ress.next()) 
             {
         %>
-        <table border="1" align="center">
+        <table cellpadding="10" align="center">
             <tr>
-                <th>User Name</th> 
-                <th>Worker Name</th> 
-                <th>Date</th>
-                <th>Complaint content</th>
+                <th class="fonty">User Name</th> 
+                <th class="fonty">Worker Name</th> 
+                <th class="fonty">Date</th>
+                <th class="fonty">Complaint content</th>
             </tr>
+            
             <tr>
-                <td><%=ress.getString("user_name")%></td>
-                <td><%=ress.getString("worker_name")%></td>
-                <td><%=ress.getString("complaint_date")%></td>
-                <td><%=ress.getString("complaint_content")%></td>
+                <td class="fontw"><%=ress.getString("user_name")%></td>
+                <td class="fontw"><%=ress.getString("worker_name")%></td>
+                <td class="fontw"><%=ress.getString("complaint_date")%></td>
+                <td class="fontw"><%=ress.getString("complaint_content")%></td>
+                
             </tr>
-        
+           
             <%
                 }
             %>
-        </table>    
-           
-        <h1 class="fonth" align="center">Work Complaint </h1>
-            
-        <%
-            String seleQry1 = "select * from tbl_complaint f inner join tbl_user u on f.user_id=u.user_id inner join tbl_workpost p on p.workpost_id=c.workpost_id inner join tbl_worker w on w.worker_id=f.worker_id where f.complaint_id ='" + request.getParameter("pid") + "'";
+        </table>
+        
+       
+           <%
+            String seleQry1 = "select * from tbl_complaint f inner join tbl_user u on f.user_id=u.user_id inner join tbl_workpost p on p.workpost_id=f.workpost_id inner join tbl_worker w on w.worker_id=p.worker_id where f.complaint_id ='" + request.getParameter("pid") + "'";
             ResultSet res = con.selectCommand(seleQry1);
             if (res.next()) 
             {
         %>
-        <table border="1" align="center">
+        <table cellpadding="10" align="center">
             <tr>
-                <th>User Name</th> 
-                <th>Worker Name</th> 
-                <th>Date</th>
-                <th>Complaint content</th>
+                <th class="fonty">User Name</th> 
+                <th class="fonty">Worker Name</th> 
+                <th class="fonty">Date</th>
+                <th class="fonty">Complaint content</th>
             </tr>
             <tr>
-                <td><%=res.getString("user_name")%></td>
-                <td><%=res.getString("worker_name")%></td>
-                <td><%=res.getString("complaint_date")%></td>
-                <td><%=res.getString("complaint_content")%></td>
+                <td class="fontw"><%=res.getString("user_name")%></td>
+                <td class="fontw"><%=res.getString("worker_name")%></td>
+                <td class="fontw"><%=res.getString("complaint_date")%></td>
+                <td class="fontw"><%=res.getString("complaint_content")%></td>
             </tr>
         
             <%
@@ -130,7 +133,7 @@
         <form method="post" >
         <table cellpadding="10" align="center">
         <tr>
-        <td>Complaint Reply</td>
+        <td class="fontw">Complaint Reply</td>
         <td>
         <textarea class="text-box" name="reply_content" rows="6" cols="20"></textarea>
         </td>

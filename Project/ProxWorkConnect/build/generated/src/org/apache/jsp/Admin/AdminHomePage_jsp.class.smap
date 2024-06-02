@@ -5,6 +5,18 @@ JSP
 *F
 + 0 AdminHomePage.jsp
 Admin/AdminHomePage.jsp
++ 1 Head.jsp
+Admin/Head.jsp
++ 2 Foot.jsp
+Admin/Foot.jsp
 *L
-5,14:44
+5:51
+6:52,9
+7,55:61
+1#1,109:116
+61#0,2:224
+63:226,3
+64,37:229
+1#2,92:266
+100#0,7:358
 *E

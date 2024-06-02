@@ -13,7 +13,7 @@
         <title>Complaint Status</title>
      <style>
              .bg-img{
-            background-image:url("../Assets/Templates/Main/images/worker1.jpg");
+            background-image:url("../Assets/Templates/Main/images/userhome1.jpg");
             background-repeat: no-repeat;
             background-size:cover;
             background-position: center;
@@ -24,17 +24,17 @@
                 border-width: 3px;
                 border-radius: 2px;
             }  
-            .fontc{
+            .fonth{
                  font-family: "Poppins", sans-serif;
                 color: white;
                 font-weight: bold; 
                 font-weight: italic; 
-                
-             .font00{
+            }
+             .fonty{
                 font-family: "Poppins", sans-serif;
                 color: #ffef19b8; 
             }
-            .fontcom{
+            .fontw{
                 font-family: "Poppins", sans-serif;
                 color: white;
                 
@@ -51,14 +51,14 @@
     <%@include file="Head.jsp" %>
     <br><br>
     <body>
-        <h1  class="fontc" align="center">Labour Complaint Status </h1>
+        <h3 class="fonth" align="center">Labour Complaint Status </h3>
         <table cellpadding="15" align="center">
             <tr>
-                <th class="font00">Sl.No</th>
-                <th class="font00">Date</th>
-                <th class="font00">Labour</th>
-                <th class="font00">Complaint content</th>
-                <th class="font00">Reply</th>
+                <th class="fonty">Sl.No</th>
+                <th class="fonty">Date</th>
+                <th class="fonty">Labour</th>
+                <th class="fonty">Complaint content</th>
+                <th class="fonty">Reply</th>
             </tr>
             <% int i = 0;
                 String seleQry = "select * from tbl_complaint c  inner join tbl_worker w on w.worker_id=c.worker_id where user_id='"+session.getAttribute("uid") +"'";
@@ -67,12 +67,12 @@
                     i++;
             %>
             <tr>
-                <td  align="center"></td>
-                    <td><%=i%></td>
-                <td class="fontcom"><%=res.getString("complaint_date")%></td>
-                <td class="fontcom"><%=res.getString("worker_name")%></td>
-                <td class="fontcom"><%=res.getString("complaint_content")%></td>
-                <td class="fontcom">
+                <td class="fontw" align="center">
+                    <%=i%></td>
+                <td class="fontw"><%=res.getString("complaint_date")%></td>
+                <td class="fontw"><%=res.getString("worker_name")%></td>
+                <td class="fontw"><%=res.getString("complaint_content")%></td>
+                <td class="fontw">
                <%
                     if(res.getString("complaint_status").equals("0"))
                     {
@@ -84,20 +84,21 @@
                     }
                     
                 %>
+                </td>
             </tr>
             <%
                 }
             %>
         </table>
-        
-        <h1 class="fonthc" align="center"> Worker Complaint Status </h1>
+        <br><br>
+        <h3 class="fonth" align="center">Work  Complaint Status </h3>
         <table cellpadding="15" align="center">
             <tr>
-                <th class="font00">Sl.No</th>
-                <th class="font00">Date</th>
-                <th class="font00">Labour</th>
-                <th class="font00">Complaint content</th>
-                <th class="font00">Reply</th>
+                <th class="fonty">Sl.No</th>
+                <th class="fonty">Date</th>
+                <th class="fonty">Labour</th>
+                <th class="fonty">Complaint content</th>
+                <th class="fonty">Reply</th>
             </tr>
             <% int j = 0;
                   String seleQry1 = "select * from tbl_complaint c inner join tbl_user u on u.user_id=c.user_id inner join tbl_workpost w on c.workpost_id=w.workpost_id inner join tbl_worker wk on w.worker_id=wk.worker_id where c.user_id='"+session.getAttribute("uid") +"'";
@@ -106,12 +107,12 @@
                     j++;
             %>
             <tr>
-                <td class="font1" align="center">
+                <td class="fontw" align="center">
                     <%=i%></td>
-                <td class="fontcom"><%=res1.getString("complaint_date")%></td>
-                <td class="fontcom"><%=res1.getString("worker_name")%></td>
-                <td class="fontcom"><%=res1.getString("complaint_content")%></td>
-                <td class="fontcom">
+                <td class="fontw"><%=res1.getString("complaint_date")%></td>
+                <td class="fontw"><%=res1.getString("worker_name")%></td>
+                <td class="fontw"><%=res1.getString("complaint_content")%></td>
+                <td class="fontw">
                <%
                     if(res1.getString("complaint_status").equals("0"))
                     {

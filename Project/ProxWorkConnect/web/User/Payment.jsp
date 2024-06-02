@@ -15,7 +15,7 @@
     {
        
         worker_amt=Integer.parseInt(rs.getString("request_amount"));
-        perc=(worker_amt/100)*10;
+        perc=(worker_amt/100)*5;
         total=worker_amt+perc;
     }
 

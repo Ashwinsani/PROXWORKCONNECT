@@ -7,15 +7,18 @@
 <jsp:useBean class="DB.ConnectionClass" id="con"></jsp:useBean>
 <%
     String preq = request.getParameter("yid");
-    String selQry="select * from tbl_workpostrequest where request_id='"+preq+"'";
+    String selQry="select * from tbl_workpostrequest wr inner join tbl_workpost w on w.workpost_id=wr.workpost_id  where wr.request_id='"+preq+"'";
     ResultSet rs = con.selectCommand(selQry);
-    double worker_amt,perc,total=0;
+    double amt,perc,total=0;
     if(rs.next())
     {
-       
-        worker_amt=Integer.parseInt(rs.getString("request_amount"));
-        perc=worker_amt*0.10;
-        total=worker_amt+perc;
+       String worker_amt=rs.getString("workpost_amount");
+                  amt = Integer.parseInt(worker_amt);
+                  perc=(amt/100)*5;
+                  total=amt+perc;
+        //worker_amt=Integer.parseInt(rs.getString("workpost_amount"));
+        //perc=worker_amt*0.5;
+        //total=worker_amt+perc;
     }
 
 %>
@@ -182,45 +185,15 @@
             <div class="wrapper">
                 <h2>Payment Gateway</h2>
                 <form method="POST">
-                    <h4>Account</h4>
-                    <div class="input-group">
-                        <div class="input-box">
-                            <input class="name" type="text" name="txtname" id="txtname" placeholder="Full Name" required="required">
-                            <i class="fa fa-user icon" aria-hidden="true"></i>
-                        </div>
-                        <div class="input-box">
-                            <input class="name" type="text" name="txtnname" id="txtnname" placeholder="Nick Name" required="required">
-                            <i class="fa fa-user icon" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <div class="input-box">
-                            <input class="name" type="email" name="txtemail" id="txtemail" placeholder="Email Address" required="required">
-                            <i class="fa fa-envelope icon" aria-hidden="true"></i>
-                        </div>
-                    </div>	
-                    <div class="input-group">
+                    
+                     <div class="input-group">
                         <div class="input-box">
                             <input class="name" type="text" name="txt_amount" placeholder="Amount" readonly="" value="<%=total%>" required="required">
                             <i class="fa fa-envelope icon" aria-hidden="true"></i>
                         </div>
                     </div>	
-                    <div class="input-group">
-                        <div class="input-box">
-                            <h4>Date of Birth</h4>
-                            <input class="dob" type="text" data-mask="00" name="txtdate" id="txtdate" placeholder="DD">
-                            <input class="dob" type="text" data-mask="00" name="txtmonth" id="txtmonth" placeholder="MM">
-                            <input class="dob" type="text" data-mask="0000" name="txtyear" id="txtyear" placeholder="YYYY">
-                        </div>
-                        <div class="input-box">
-                            <h4>Gender</h4>
-                            <input type="radio" name="rdbgender" id="male" checked  class="radio">
-                            <label for="male">Male</label>
-                            <input type="radio" name="rdbgender" id="female" class="radio">
-                            <label for="female">Female</label>
-                        </div>
-                    </div>
-                    <div class="input-group">
+                    
+                     <div class="input-group">
                         <div class="input-box">
                             <h4>Payment Details</h4>
                             <input type="radio" name="rdbpay" id="cc" checked class="radio">
@@ -262,7 +235,7 @@
 
             if (request.getParameter("btn_pay") != null) 
                 {
-                String upQ="update tbl_workpostrequest set request_status='6' where request_id='"+request.getParameter("yid")+"'";
+                String upQ="update tbl_workpostrequest set request_status='5' where request_id='"+request.getParameter("yid")+"'";
                  
                     if(con.executeCommand(upQ))
                    {

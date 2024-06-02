@@ -53,11 +53,10 @@
                 <tr>
                     <td>Contact</td>
                     <td>
-                        <input  class="text-box" required type="text" name="contact" placeholder="Enter Contact No" pattern="[7-9]{1}[0-9]{9}" 
-                title="Phone number with 7-9 and remaing 9 digit with 0-9">
+                        <input required type="text" name="contact" class="text-box" placeholder="Enter Contact No" title="Phone number with 7-9 and remaining 9 digit with 0-9" pattern="[7-9]{1}[0-9]{9}" >
                     </td>
                 </tr>
-                <tr>   
+                <tr>
                     <td>Email</td>
                     <td>
                         <input type="email" class="text-box" required name="email" placeholder="Enter Email-Id">
@@ -71,7 +70,7 @@
                     
                  <tr>
                     <td>Photo</td>
-                    <td align="center">
+                    <td align="left">
                         <input  required type="file" name="photo">
                     </td>
                 </tr>
@@ -104,7 +103,7 @@
                 <tr>
                     <td>District</td>
                     <td>
-                        <select name="ddis"  onchange="getPlace(this.value)">
+                        <select name="ddldis" onchange="getPlace(this.value)"  required>
                             <option>--select--</option>
                             <%
                               String selqry1="select * from tbl_district";
@@ -172,7 +171,7 @@
                             }
                            
                         </script>
-                        <br><br><br><br><br><br><br><br><br>
+                        <br><br><br><br>
             </div>
             </div>
     </div>

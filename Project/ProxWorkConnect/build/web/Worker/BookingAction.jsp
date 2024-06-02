@@ -86,7 +86,8 @@
          
          if(request.getParameter("fid")!=null)
          {
-                  String upqry="update tbl_workpostrequest set request_status='7' where request_id='"+request.getParameter("fid")+"'";
+
+                  String upqry="update tbl_workpostrequest set request_status='6' where request_id='"+request.getParameter("fid")+"'";
                   if(con.executeCommand(upqry)){
                   response.sendRedirect("BookingAction.jsp");
          }
@@ -106,7 +107,7 @@
                     <th class="font">Action</th>
                 </tr>
                 <%
-                 String selqry="select * from tbl_workpostrequest w inner join tbl_user u on u.user_id=w.user_id where w.request_status='0'";
+                 String selqry="select * from tbl_workpostrequest w inner join tbl_user u on u.user_id=w.user_id inner join tbl_workpost wp on wp.workpost_id=w.workpost_id where w.request_status='0' and wp.worker_id='" + session.getAttribute("wid") + "'";
                  ResultSet rs=con.selectCommand(selqry);
                  int i=0;
                  while(rs.next())
@@ -132,7 +133,7 @@
                     
             </table>
                      <br><br><br> 
-                     <h2 class="fonth2">Accepted Requests</h2>         
+                     <h2 class="fonth2">Accepted Booking</h2>         
                 <table cellpadding="15" align="center">
                 <tr>
                     <th class="font">Sl.no</th>
@@ -146,7 +147,7 @@
                     <th class="font">Action</th>  
                 </tr>
         <%
-                 String selqry1="select * from tbl_workpostrequest w inner join tbl_user u on u.user_id=w.user_id where w.request_status='1' or w.request_status='3' or w.request_status='4' or w.request_status='5' or w.request_status='6' or w.request_status='7'";
+                 String selqry1="select * from tbl_workpostrequest w inner join tbl_user u on u.user_id=w.user_id inner join tbl_workpost wp on wp.workpost_id=w.workpost_id where (w.request_status='1' or w.request_status='3' or w.request_status='4' or w.request_status='5' or w.request_status='6') and wp.worker_id='" + session.getAttribute("wid") + "'";
                  ResultSet rs1=con.selectCommand(selqry1);
                  int j=0;
                  while(rs1.next())
@@ -175,29 +176,25 @@
                     <a href="BookingAction.jsp?eid=<%=rs1.getString("request_id")%>">End work</a>
                     <%
                     }
-                    else if(rs1.getString("request_status").equals("6"))
+
+                    else if(rs1.getString("request_status").equals("4"))//if work ended
                     {
-                        out.println("Payment Received");
-                    }
-                    else if(rs1.getString("request_status").equals("7"))
-                    {
-                        out.println("Completed");
-                    }
-                    
-                    else if(rs1.getString("request_status").equals("4"))
-                    {
+                   
                     %>
-                    <a href="PayBooking.jsp?nid=<%=rs1.getString("request_id")%>">Pay Request</a>
-                    <%
-                    }
-                    else
-                    {
-                    %>
-                    Amount : <%=rs1.getString("request_amount")%><br>
+
+                    Amount : <%=rs1.getString("workpost_amount")%><br>
                    <%
                     out.println("Payment pending");   
                     }
-                 
+                    else if(rs1.getString("request_status").equals("5"))//payment done
+                    {
+                        out.println("Payment Received");
+                    }
+                    else if(rs1.getString("request_status").equals("6"))//finished
+                    {
+                        out.println("Completed");
+                    }
+
                     %>
                          </td>
                      <td>
@@ -209,7 +206,9 @@
                              <a href="BookingAction.jsp?rid=<%=rs1.getString("request_id")%>">Reject</a>
                      <%
                      }
-                    if(rs1.getString("request_status").equals("6"))
+
+                    if(rs1.getString("request_status").equals("5"))
+
                     {
                     %>
                          <a href="BookingAction.jsp?fid=<%=rs1.getString("request_id")%>">Finish</a>
@@ -223,7 +222,7 @@
                      %>       
              </table>
               <br><br><br>    
-             <h2 class="fonth2">Rejected Requests</h2>         
+             <h2 class="fonth2">Rejected Booking</h2>         
                   <table cellpadding="15" align="center">
                 <tr>
                    <th class="font">Sl.no</th>
@@ -236,7 +235,7 @@
                     <th class="font">Action</th>   
                 </tr>
         <%
-                 String selqry2="select * from tbl_workpostrequest w inner join tbl_user u on u.user_id=w.user_id where w.request_status='2'";
+                 String selqry2="select * from tbl_workpostrequest w inner join tbl_user u on u.user_id=w.user_id inner join tbl_workpost wp on wp.workpost_id=w.workpost_id where w.request_status='2' and wp.worker_id='" + session.getAttribute("wid") + "'";
                  ResultSet rs2=con.selectCommand(selqry2);
                  int k=0;
                  while(rs2.next())
@@ -258,8 +257,10 @@
                      <%
                  }
                      %>      
-       </div>
-    </body>
+             </table>    
+            
+        </div>      
+   </body>
     <br><br><br>
     <%@include file="Foot.jsp" %>
         </div>

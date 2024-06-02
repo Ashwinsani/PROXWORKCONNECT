@@ -3,7 +3,7 @@
     Created on : 18 Jan, 2024, 3:45:36 PM
     Author     : ashwi
 --%>
-
+<%@page import="java.sql.ResultSet"%>
 <jsp:useBean class="DB.ConnectionClass" id="con"></jsp:useBean>
 
 <%@page import="java.sql.*" %>
@@ -12,25 +12,22 @@
 <%@page import="org.apache.commons.fileupload.*" %>
 <%@page import="org.apache.commons.fileupload.servlet.*" %>
 <%@page import="org.apache.commons.fileupload.disk.*" %>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <title>JSP Page</title>
     </head>
     <body>
-        <%
+         <%
 
             File savedFile = null;
             FileItem f_item = null;
 
             String field_name = "";
             String file_name = "";
-            String wp = "";
+            String ph = "";
 
             String field[] = new String[20];
             String value[] = new String[20];
@@ -84,9 +81,9 @@
                             Random r = new Random();
                             int r_num = r.nextInt(1111) + 999;
 
-                            wp = "WorkPhoto_" + r_num + ext;
+                            ph = "WorkGallery_" + r_num + ext;
                             //creating a file object
-                            savedFile = new File(file_path + wp);
+                            savedFile = new File(file_path + ph);
                             try {
                                 //writing the file object
                                 f_item.write(savedFile);
@@ -100,27 +97,24 @@
                     }
 
                 }
-               
                 String str1 = "insert into tbl_workpostgallery(gallery_image,workpost_id)"
-                        + "values('" + wp+ "','"+value[0]+"')";
+                        + "values('" + ph + "','"+value[0]+"')";
 
                 System.out.println(str1);       
 
-                         boolean status = con.executeCommand(str1);
+                boolean status = con.executeCommand(str1);
 
                 if (status == true) {
         %>
         <script type="text/javascript" >
             alert("Upload Successfully..");
             setTimeout(function() {
-                window.location.href = '../../Worker/WorkPostGallery.jsp?pid=<%=value[0]%>'
+                window.location.href = '../../Worker/WorkPostDisplay.jsp?pid=<%=value[0]%>'
             }, 100);
         </script>
         <%
                 }
             }
-                
-         
-        %>
+         %>   
     </body>
 </html>

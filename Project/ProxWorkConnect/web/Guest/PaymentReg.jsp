@@ -169,45 +169,23 @@
             <div class="wrapper">
                 <h2>Payment Gateway</h2>
                 <form method="POST">
-                    <h4>Account</h4>
+                    
                     <div class="input-group">
                         <div class="input-box">
                             <input class="name" type="text" name="txtname" id="txtname" placeholder="Full Name" required="required">
                             <i class="fa fa-user icon" aria-hidden="true"></i>
                         </div>
-                        <div class="input-box">
-                            <input class="name" type="text" name="txtnname" id="txtnname" placeholder="Nick Name" required="required">
-                            <i class="fa fa-user icon" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <div class="input-box">
-                            <input class="name" type="email" name="txtemail" id="txtemail" placeholder="Email Address" required="required">
-                            <i class="fa fa-envelope icon" aria-hidden="true"></i>
-                        </div>
-                    </div>	
-                    <div class="input-group">
+                    </div>  
+                     <div class="input-group">
                         <div class="input-box">
                             <input class="name" type="text" name="txt_amount" placeholder="Amount" readonly="" value="149" required="required">
                             <i class="fa fa-envelope icon" aria-hidden="true"></i>
                         </div>
                     </div>	
-                    <div class="input-group">
-                        <div class="input-box">
-                            <h4>Date of Birth</h4>
-                            <input class="dob" type="text" data-mask="00" name="txtdate" id="txtdate" placeholder="DD">
-                            <input class="dob" type="text" data-mask="00" name="txtmonth" id="txtmonth" placeholder="MM">
-                            <input class="dob" type="text" data-mask="0000" name="txtyear" id="txtyear" placeholder="YYYY">
-                        </div>
-                        <div class="input-box">
-                            <h4>Gender</h4>
-                            <input type="radio" name="rdbgender" id="male" checked  class="radio">
-                            <label for="male">Male</label>
-                            <input type="radio" name="rdbgender" id="female" class="radio">
-                            <label for="female">Female</label>
-                        </div>
-                    </div>
-                    <div class="input-group">
+
+                    
+
+                     <div class="input-group">
                         <div class="input-box">
                             <h4>Payment Details</h4>
                             <input type="radio" name="rdbpay" id="cc" checked class="radio">

@@ -44,8 +44,14 @@
           if(request.getParameter("update")!=null) 
            {
                     String upqry = "update tbl_worker set worker_name = '"+request.getParameter("name")+"',worker_contact = '"+request.getParameter("contact")+"',worker_email = '"+request.getParameter("email")+"',worker_address = '"+request.getParameter("address")+"'where worker_id = '"+session.getAttribute("wid")+"'";
-                    con.executeCommand(upqry);
-                    response.sendRedirect("WorkerEditProfile.jsp");    
+                    if(con.executeCommand(upqry)){
+                        %>
+                        <script>
+                            alert("Updated");
+                            window.location="WorkerHomePage.jsp";
+                        </script>
+                        <%
+                    }   
             } 
              String editname="";
              String editcontact="";

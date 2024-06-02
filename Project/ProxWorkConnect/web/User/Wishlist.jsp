@@ -73,15 +73,21 @@
              ResultSet r=con.selectCommand(sqry);
                 
                  int i=0;
+                  int amt,perc,total=0;
                  while(r.next())
                  {
                      i++;
+                     String worker_amt=r.getString("workpost_amount");
+                  amt = Integer.parseInt(worker_amt);
+                  perc=(amt/100)*5;
+                  total=amt+perc;
                      %>
                      
                          <div class="sub">
                              <div><img src="../Assets/Files/WorkPostPhoto/<%=r.getString("workpost_image")%>" height="120" width="120"></div>
                              <div class="cont"><div>Details</div><div><%=r.getString("workpost_details")%></div></div>
                              <div class="cont"><div>Duration</div><div><%=r.getString("workpost_duration")%></div></div>
+                             <div class="cont"><div>Estimated Amount*</div><div><%out.println(total);%></div></div>
                              <div class="cont"><div>Worker</div><div><%=r.getString("worker_name")%></div></div>
                              <div class="cont"><div>Contact</div><div><%=r.getString("worker_contact")%></div></div>
                              <div class="cont"><div>Post Date</div><div><%=r.getString("workpost_date")%></div></div>

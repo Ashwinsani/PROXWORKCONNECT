@@ -9,7 +9,7 @@
 <%@page import="java.sql.ResultSet"%>
 <!DOCTYPE html>
 <option value="">--select--</option>
-<html>
+
     <%
      String selqry="select * from tbl_place where district_id='"+request.getParameter("pid")+"'";
      ResultSet rs=con.selectCommand(selqry);

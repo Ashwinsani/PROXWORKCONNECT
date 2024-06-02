@@ -75,7 +75,7 @@
                     <th div class="fonty">Name</th>
                     <th div class="fonty">Contact</th>
                     <th div class="fonty" >Proof</th>
-                    <th div class="fonty">Place</th>
+                    <th div class="fonty">Town</th>
                     <th div class="fonty">Workertype</th>
                     <th div class="fonty">Action</th>
                 </tr>
@@ -89,7 +89,7 @@
                      %>
                      <tr>
                          <td div class="fontw"><%=i%></td>
-                         <td div class="fontw"<%=rs.getString("worker_name")%></td>
+                         <td div class="fontw"><%=rs.getString("worker_name")%></td>
                          <td div class="fontw"><%=rs.getString("worker_contact")%></td>
                          <td div class="fontw"><%=rs.getString("worker_photo")%></td>
                          <td div class="fontw"><%=rs.getString("worker_proof")%></td>
@@ -115,7 +115,7 @@
                     <th div class="fonty">Contact</th>
                     <th div class="fonty">Photo</th>
                     <th div class="fonty">Proof</th>
-                    <th div class="fonty">Place</th>
+                    <th div class="fonty">Town</th>
                     <th div class="fonty">Workertype</th>
                     <th div class="fonty">Action</th>
                     </div>
@@ -153,7 +153,7 @@
                     <th div class="fonty">Contact</th>
                     <th  div class="fonty">Photo</th>
                     <th div class="fonty">Proof</th>
-                    <th div class="fonty">Place</th>
+                    <th div class="fonty">Town</th>
                     <th div class="fonty">Workertype</th>
                     <th div class="fonty">Action</th>
                 </tr>

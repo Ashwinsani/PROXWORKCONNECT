@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.sql.ResultSet;
 
-public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class UserRegistration_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -63,6 +63,7 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
+      out.write("          <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        \n");
       out.write("        <title>User registration</title>\n");
       out.write("         <style>\n");
@@ -75,11 +76,12 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("            .text-box{\n");
       out.write("                background-color: transparent;\n");
       out.write("                width: 275px;\n");
-      out.write("                height:50px;\n");
-      out.write("                color:grey;\n");
-      out.write("               \n");
-      out.write("                \n");
+      out.write("                height:50px; \n");
+      out.write("                color:white;\n");
+      out.write("                border-radius: 2px;\n");
       out.write("            }    \n");
+      out.write("                \n");
+      out.write("                \n");
       out.write("            .font{\n");
       out.write("                font-family: \"Poppins\", sans-serif;\n");
       out.write("                color: #ffef19b8;\n");
@@ -134,18 +136,18 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        <div class=\"container-fluid\">\n");
       out.write("          <div class=\"contact_link-container\">\n");
       out.write("            <a href=\"\" class=\"contact_link1\">\n");
-      out.write("              <i class=\"fa fa-map-marker\" aria-hidden=\"true\"></i>\n");
+      out.write("              <i class=\"fa fa-map-marker\" aria-hidden=\"true\"> ProxWorkConnect</i>\n");
       out.write("            </a>\n");
-      out.write("            <a href=\"\" class=\"contact_link2\">\n");
+      out.write("          <!--  <a href=\"\" class=\"contact_link2\">\n");
       out.write("              <i class=\"fa fa-phone\" aria-hidden=\"true\"></i>\n");
       out.write("              <span>\n");
       out.write("                Call : +01 1234567890\n");
       out.write("              </span>\n");
-      out.write("            </a>\n");
+      out.write("            </a>-->\n");
       out.write("            <a href=\"\" class=\"contact_link3\">\n");
       out.write("              <i class=\"fa fa-envelope\" aria-hidden=\"true\"></i>\n");
       out.write("              <span>\n");
-      out.write("                demo@gmail.com\n");
+      out.write("                pwc@gmail.com\n");
       out.write("              </span>\n");
       out.write("            </a>\n");
       out.write("          </div>\n");
@@ -169,12 +171,15 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("                <li class=\"nav-item \">\n");
       out.write("                  <a class=\"nav-link\" href=\"../index.html\">Home <span class=\"sr-only\">(current)</span></a>\n");
       out.write("                </li>\n");
-      out.write("                <li class=\"nav-item\">\n");
-      out.write("                  <a class=\"nav-link\" href=\"../Guest/userregistration.jsp\">User Sign Up</a>\n");
-      out.write("                </li>\n");
-      out.write("                <li class=\"nav-item\">\n");
-      out.write("                  <a class=\"nav-link\" href=\"../Guest/WorkerRegistration.jsp\">Labour Sign Up</a>\n");
-      out.write("                </li>\n");
+      out.write("                 <li class=\"nav-item dropdown\">\n");
+      out.write("        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n");
+      out.write("          Sign Up\n");
+      out.write("        </a>\n");
+      out.write("        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\n");
+      out.write("          <a class=\"dropdown-item\" href=\"../Guest/UserRegistration.jsp\">User Sign Up</a>\n");
+      out.write("          <a class=\"dropdown-item\" href=\"../Guest/WorkerRegistration.jsp\">Labour Sign Up</a>\n");
+      out.write("        </div>\n");
+      out.write("      </li>\n");
       out.write("                <li class=\"nav-item\">\n");
       out.write("                  <a class=\"nav-link\" href=\"#cont\">Contact Us</a>\n");
       out.write("                </li>\n");
@@ -199,8 +204,8 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("                <tr>\n");
       out.write("                    <td>Name</td>\n");
       out.write("                    <td>\n");
-      out.write("                        <input type=\"text\" name=\"name\" class=\"text-box\" placeholder=\"Enter Name\"  title=\"Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter\" pattern=\"^[A-Z]+[a-zA-Z ]*$\">\n");
-      out.write("                        <input type=\"hidden\" name=\"userid\" >\n");
+      out.write("                        <input type=\"text\" name=\"name\" class=\"text-box\" placeholder=\"Enter Name\"  title=\"Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter\" pattern=\"^[A-Z]+[a-zA-Z ]*$\"\n");
+      out.write("                               \n");
       out.write("                    </td>\n");
       out.write("                </tr>\n");
       out.write("                \n");
@@ -226,7 +231,7 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("                    <tr>\n");
       out.write("                    <td>DOB</td>\n");
       out.write("                    <td>\n");
-      out.write("                        <input type=\"text\" class=\"text-box\" required name=\"dob\"placeholder=\"Enter DateOfBirth\" >\n");
+      out.write("                        <input type=\"date\" class=\"text-box\" required name=\"dob\"placeholder=\"Enter DateOfBirth\" >\n");
       out.write("                    </td>\n");
       out.write("                </tr>\n");
       out.write("                 <tr>\n");
@@ -238,7 +243,7 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("                <tr>\n");
       out.write("                  <td>Gender</td>\n");
       out.write("                    <td>\n");
-      out.write("                        Male<input type=\"radio\" name=\"gender\">\n");
+      out.write("                        Male<input required type=\"radio\" name=\"gender\">\n");
       out.write("                        Female<input type=\"radio\" name=\"gender\">\n");
       out.write("                        Others<input type=\"radio\" name=\"gender\">\n");
       out.write("                    </td>\n");
@@ -260,62 +265,63 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("                <tr>\n");
       out.write("                    <td>District</td>\n");
       out.write("                    <td>\n");
-      out.write("                        <select name=\"ddist\" onchange=\"getPlace(this.value)\"class=\"text-box\">\n");
-      out.write("                            <option value=\"\" \">---select district---</option>\n");
-      out.write("                                     ");
+      out.write("                        <select name=\"ddldis\" onchange=\"getPlace(this.value)\" required>\n");
+      out.write("                            <option value=\"\">--select--</option>\n");
+      out.write("                             ");
 
-                        String selqry="select * from tbl_district";
-                        ResultSet rs=con.selectCommand(selqry);
-                        while(rs.next())
-                        {
+                              String selqry1="select * from tbl_district";
+                              ResultSet rs1=con.selectCommand(selqry1);
+                              while(rs1.next())
+                              {
+                              
                             
       out.write("\n");
       out.write("                            <option value=\"");
-      out.print(rs.getString("district_id"));
+      out.print(rs1.getString("district_id"));
       out.write('"');
       out.write('>');
-      out.print(rs.getString("district_name"));
+      out.print(rs1.getString("district_name"));
       out.write("</option>\n");
-      out.write("                              ");
+      out.write("                            ");
 
-                        }
-                        
-      out.write("                        \n");
+                              }
+                            
+      out.write("\n");
       out.write("                        </select>\n");
       out.write("                    </td>\n");
       out.write("                </tr>\n");
       out.write("                <tr>\n");
       out.write("                    <td>Place</td>\n");
       out.write("                    <td>\n");
-      out.write("                        <select name=\"ddlplace\" class=\"text-box\" id=\"selplace\" onchange=\"getlocation(this.value)\">\n");
-      out.write("                             <option value=\"\">--select--</option>\n");
-      out.write("                              ");
+      out.write("                        <select name=\"ddlplace\" id=\"selplace\" onchange=\"getLocation(this.value)\" required>\n");
+      out.write("                            <option value=\"\">--select--</option>\n");
+      out.write("                            ");
 
-                        String selqry1="select * from tbl_place";
-                        ResultSet rs1=con.selectCommand(selqry1);
-                        while(rs1.next())
-                        {
+                              String selqry="select * from tbl_place";
+                              ResultSet rs=con.selectCommand(selqry);
+                              while(rs.next())
+                              {
+                              
                             
       out.write("\n");
       out.write("                            <option value=\"");
-      out.print(rs1.getString("place_id"));
+      out.print(rs.getString("place_id"));
       out.write('"');
       out.write('>');
-      out.print(rs1.getString("place_name"));
+      out.print(rs.getString("place_name"));
       out.write("</option>\n");
-      out.write("                              ");
+      out.write("                            ");
 
-                        }
-                        
-      out.write("                        \n");
-      out.write("                           \n");
+                              }
+                            
+      out.write("\n");
       out.write("                        </select>\n");
       out.write("                    </td>\n");
       out.write("                </tr>\n");
       out.write("                <tr>\n");
       out.write("                    <td>Location</td>\n");
       out.write("                    <td>\n");
-      out.write("                        <select name=\"ddlloc\" class=\"text-box\" id=\"sellocation\">\n");
+      out.write("                        <select name=\"ddlloc\" id=\"sellocation\" required>\n");
       out.write("                            <option value=\"\">--select--</option>\n");
       out.write("                        </select>\n");
       out.write("                    </td>\n");
@@ -386,14 +392,14 @@ public final class userregistration_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("            <ul>\n");
       out.write("              <li>\n");
       out.write("                  <div>\n");
-      out.write("                  <a href=\"#home\" >\n");
+      out.write("                  <a href=\"../#home\" >\n");
       out.write("                  Home\n");
       out.write("                  </a>\n");
       out.write("                  </div>\n");
       out.write("              </li>\n");
       out.write("              <li>\n");
       out.write("                <div>\n");
-      out.write("                <a href=\"#about\">\n");
+      out.write("                <a href=\"../#about\">\n");
       out.write("                  About us\n");
       out.write("                </a>\n");
       out.write("                </div>\n");

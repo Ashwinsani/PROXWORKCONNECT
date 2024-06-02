@@ -44,8 +44,15 @@
           if(request.getParameter("update")!=null) 
            {
                     String upqry = "update tbl_user set user_name = '"+request.getParameter("name")+"',user_contact = '"+request.getParameter("contact")+"',user_email = '"+request.getParameter("email")+"',user_address = '"+request.getParameter("address")+"'where user_id = '"+session.getAttribute("uid")+"'";
-                    con.executeCommand(upqry);
-                   response.sendRedirect("UserEditProfile.jsp");    
+                    if(con.executeCommand(upqry)){
+                        %>
+                        <script>
+                            alert("Updated");
+                            window.location="UserHomePage.jsp";
+                        </script>
+                        <%
+                    }
+                   
            } 
              String editname="";
              String editcontact="";

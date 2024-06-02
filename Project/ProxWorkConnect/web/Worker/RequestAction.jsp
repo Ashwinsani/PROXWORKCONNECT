@@ -90,11 +90,23 @@
                   response.sendRedirect("RequestAction.jsp");
          }
          }
-        
-              
-        %>
-        
-        <div align="center">
+          if(request.getParameter("vid")!=null)
+         {
+                  String upqry="update tbl_workrequest set request_status='8' where workrequest_id='"+request.getParameter("vid")+"'";
+                  if(con.executeCommand(upqry)){
+              %>
+                   <script type="text/javascript" >
+                      alert("Contact the user for further informations.");
+                       setTimeout(function() {
+                window.location.href = 'RequestAction.jsp'
+            }, 100);
+        </script>
+                          <%
+                            }
+         }
+                          %>
+
+       <div align="center">
         <h2 class="fonth2">New Requests</h2>
         <table cellpadding="15" align="center">
                 <tr>
@@ -102,14 +114,16 @@
                     <th class="font">Request From</th>
                     <th class="font">Work Date</th>
                     <th class="font">Work Details</th>
+                    <th class="font">Photo</th>
                     <th class="font">Address</th>
                     <th class="font">Contact</th>
                     <th class="font">Requested Date</th>
                     <th class="font">Action</th>
                 </tr>
                 <%
-                 String selqry="select * from tbl_workrequest w inner join tbl_user u on u.user_id=w.user_id where w.request_status='0'";
+                 String selqry="select * from tbl_workrequest w inner join tbl_user u on u.user_id=w.user_id where (w.request_status='0' or w.request_status='8') and w.worker_id='"+session.getAttribute("wid")+"'";
                  ResultSet rs=con.selectCommand(selqry);
+                 
                  int i=0;
                  while(rs.next())
                  {
@@ -120,18 +134,21 @@
                          <td class="font1"><%=rs.getString("user_name")%></td>
                          <td class="font1"> <%=rs.getString("work_date")%></td>
                          <td class="font1"><%=rs.getString("request_details")%></td>
+                        <td><img src="../Assets/Files/RequestPhoto/<%=rs.getString("request_photo")%>" height="120" width="120"></td>
                          <td class="font1"><%=rs.getString("address")%></td>
                          <td class="font1"><%=rs.getString("user_contact")%></td>
                          <td class="font1"><%=rs.getString("request_date")%></td>
                          
                          
-                          <td class="font1"><a href="RequestAction.jsp?aid=<%=rs.getString("workrequest_id")%>">Accept</a>
+                          <td><a href="RequestAction.jsp?vid=<%=rs.getString("workrequest_id")%>">Visit site</a>
+                                    
+                         |<a href="RequestAction.jsp?aid=<%=rs.getString("workrequest_id")%>">Accept</a>
                          |<a href="RequestAction.jsp?rid=<%=rs.getString("workrequest_id")%>">Reject</a></td>
                      </tr>
                      <%
                  }
                      %>      
-                       
+                    
             </table>
                       <br><br><br> 
             <h2 class="fonth2">Accepted Requests</h2>         
@@ -141,7 +158,8 @@
                     <th class="font">Request From</th>
                     <th class="font">Work Date</th>
                     <th class="font">Work Details</th>
-                    <th class="font">Address</th>
+                    <th class="font">Photo</th>
+                     <th class="font">Address</th>
                     <th class="font">Contact</th>
                     <th class="font">Requested Date</th>
                     <th class="font">Status</th>
@@ -149,7 +167,7 @@
                      
                 </tr>
         <%
-                 String selqry1="select * from tbl_workrequest w inner join tbl_user u on u.user_id=w.user_id where w.request_status='1' or w.request_status='3' or w.request_status='4'or w.request_status='5' or w.request_status='6' or w.request_status='7'";
+                 String selqry1="select * from tbl_workrequest w inner join tbl_user u on u.user_id=w.user_id where (w.request_status='1' or w.request_status='3' or w.request_status='4'or w.request_status='5' or w.request_status='6' or w.request_status='7') and w.worker_id='"+session.getAttribute("wid")+"'";
                  ResultSet rs1=con.selectCommand(selqry1);
                  int j=0;
                  while(rs1.next())
@@ -161,6 +179,7 @@
                          <td class="font1"><%=rs1.getString("user_name")%></td>
                          <td class="font1"><%=rs1.getString("work_date")%></td>
                          <td class="font1"><%=rs1.getString("request_details")%></td>
+                         <td><img src="../Assets/Files/RequestPhoto/<%=rs1.getString("request_photo")%>" height="120" width="120"></td>
                          <td class="font1"><%=rs1.getString("address")%></td>
                          <td class="font1"><%=rs1.getString("user_contact")%></td>
                          <td class="font1"><%=rs1.getString("request_date")%></td>
@@ -168,28 +187,28 @@
                          <td class="font1">
                       
                     <%
-                    if(rs1.getString("request_status").equals("1"))
+                    if(rs1.getString("request_status").equals("1"))//if work accepted
                     {
                     %>
                     <a href="RequestAction.jsp?tid=<%=rs1.getString("workrequest_id")%>">Start work</a>
                     <%
                     }
-                    else if(rs1.getString("request_status").equals("3"))
+                    else if(rs1.getString("request_status").equals("3"))//if work started
                     {
                     %>
                     <a href="RequestAction.jsp?eid=<%=rs1.getString("workrequest_id")%>">End work</a>
                     <%
                     }
-                    else if(rs1.getString("request_status").equals("6"))
+                    else if(rs1.getString("request_status").equals("6"))//if payment done
                     {
                         out.println("Payment Received");
                     }
-                    else if(rs1.getString("request_status").equals("7"))
+                    else if(rs1.getString("request_status").equals("7"))//if finished
                     {
                         out.println("Completed");
                     }
-                    
-                    else if(rs1.getString("request_status").equals("4"))
+                    else if(rs1.getString("request_status").equals("4"))//if work ended 
+
                     {
                     %>
                     <a href="PayRequest.jsp?nid=<%=rs1.getString("workrequest_id")%>">Pay Request</a>
@@ -200,6 +219,7 @@
                     {
                     %>
                     Amount : <%=rs1.getString("request_amount")%><br>
+                    Remarks : <%=rs1.getString("request_remarks")%><br>
                    <%
                     out.println("Payment pending");   
                     }
@@ -216,7 +236,7 @@
                              <a href="RequestAction.jsp?rid=<%=rs1.getString("workrequest_id")%>">Reject</a>
                      <%
                      }
-                    if(rs1.getString("request_status").equals("6"))
+                    if(rs1.getString("request_status").equals("6"))//if payment done
                     {
                     %>
                          <a href="RequestAction.jsp?fid=<%=rs1.getString("workrequest_id")%>">Finish</a>
@@ -238,13 +258,14 @@
                     <th class="font">Request From</th>
                     <th class="font">Work Date</th>
                     <th class="font">Work Details</th>
+                     <th class="font">Photo</th>
                     <th class="font">Address</th>
                     <th class="font">Contact</th>
                     <th class="font">Requested Date</th>
                     <th class="font">Action</th>   
                 </tr>
         <%
-                 String selqry2="select * from tbl_workrequest w inner join tbl_user u on u.user_id=w.user_id where w.request_status='2'";
+                 String selqry2="select * from tbl_workrequest w inner join tbl_user u on u.user_id=w.user_id where w.request_status='2' and w.worker_id='"+session.getAttribute("wid")+"'";
                  ResultSet rs2=con.selectCommand(selqry2);
                  int k=0;
                  while(rs2.next())
@@ -256,6 +277,7 @@
                          <td class="font1"><%=rs2.getString("user_name")%></td>
                          <td class="font1"><%=rs2.getString("work_date")%></td>
                          <td class="font1"><%=rs2.getString("request_details")%></td>
+                         <td><img src="../Assets/Files/RequestPhoto/<%=rs2.getString("request_photo")%>" height="120" width="120"></td>
                          <td class="font1"><%=rs2.getString("address")%></td>
                          <td class="font1"><%=rs2.getString("user_contact")%></td>
                          <td class="font1"><%=rs2.getString("request_date")%></td>

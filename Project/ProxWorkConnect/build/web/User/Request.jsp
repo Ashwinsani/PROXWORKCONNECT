@@ -41,26 +41,23 @@
     <br><br>
     <div class="font">
     <body>
-        <%
-          if(request.getParameter("request")!=null){
-                       String insqry="insert into tbl_workrequest(request_details,address,work_date,request_date,worker_id,user_id)values('"+request.getParameter("txt_details")+"','"+request.getParameter("txt_address")+"','"+request.getParameter("date")+"',curdate(),'"+request.getParameter("rid")+"','"+session.getAttribute("uid")+"')";
-              con.executeCommand(insqry);
-              
-        %>
-        <script>
-                alert("Request Successfull");
-                window.location="UserHomePage.jsp";
-            </script>
-         <%
-          }
-          %>
-        <form method="post">
+        
+        <form method="post" enctype="multipart/form-data" action="../Assets/ActionPages/RequestUploadAction.jsp">
             <table cellpadding="10" align="center">
+                
+        
         <tr>
                         <td>Details</td>
                         <td align="center">
                             <textarea class="text-box" name="txt_details" id="txt_details" cols="45" rows="5"></textarea></td>
                     </tr>
+                     <tr>
+                    
+                    <td>Photo</td>
+                    <td align="center">
+                        <input required type="file" name="photo">
+                    </td>
+       </tr>
                      <tr>
                         <td>Address</td>
                         <td align="center">
@@ -72,6 +69,11 @@
                         <input  type="date" name="date" placeholder="Enter Date of Work" required>
                     </td>
                 </tr>
+                
+           
+                        <input type="hidden" name="workerid"  value="<%=request.getParameter("rid")%>"  placeholder="Enter Date of Work" required>
+                    
+       
                 <tr>
                     <td colspan="2" align="center">
                         <input type="submit" name="request" value="Request" class="button">

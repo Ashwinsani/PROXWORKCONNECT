@@ -86,7 +86,7 @@
          <tr>
                     <td>District</td>
                     <td>
-                        <select name="ddldis"  onchange="getPlace(this.value)" required>
+                        <select name="ddldis" onchange="getPlace(this.value)" required>
                             <option>--select--</option>
                             <%
                               String selqry1="select * from tbl_district";
@@ -105,7 +105,7 @@
                 <tr>
                     <td>Place</td>
                     <td>
-                        <select name="ddlplace"  id="selplace" required>
+                        <select name="ddlplace" id="selplace" required>
                             <option>--select--</option>
                             
                         </select>
@@ -146,22 +146,28 @@
                  ResultSet r=con.selectCommand(selectqry);
                 
                  int i=0;
+                  int amt,perc,total=0;
+                  
                  while(r.next())
                  {
                      i++;
+                  String worker_amt=r.getString("workpost_amount");
+                  amt = Integer.parseInt(worker_amt);
+                  perc=(amt/100)*5;
+                  total=amt+perc;
                      %>
                      
                          <div class="sub">
                              <div><img src="../Assets/Files/WorkPostPhoto/<%=r.getString("workpost_image")%>" height="120" width="120"></div>
                              <div class="cont"><div>Details</div><div><%=r.getString("workpost_details")%></div></div>
                              <div class="cont"><div>Duration</div><div><%=r.getString("workpost_duration")%></div></div>
+                             <div class="cont"><div>Estimated Amount*</div><div><%out.println(total);%></div></div>
                              <div class="cont"><div>Worker</div><div><%=r.getString("worker_name")%></div></div>
                              <div class="cont"><div>Contact</div><div><%=r.getString("worker_contact")%></div></div>
                              <div class="cont"><div>Post Date</div><div><%=r.getString("workpost_date")%></div></div>
                              <div><a href="ViewWorkGallery.jsp?sid=<%=r.getString("workpost_id")%> ">View Gallery</a></div>
                              <div><a href="ViewReviewWork.jsp?gid=<%=r.getString("workpost_id")%> ">View Ratings</a></div>
                              <div>
-                                
                                     <%
                                      String clr = "";
                                      String post_id=r.getString("workpost_id");
@@ -184,7 +190,8 @@
                 
                   %>
                    </div>
-                       
+                   <br>
+                   <h5 align="center">*Terms and conditions: From the estimated amount, 5% will be retained by the company.</h5>                  
     </form>
     </body>
     <script src="../Assets/JQuery/jQuery.js"></script>         

@@ -104,19 +104,21 @@
                          <div><img src="../Assets/Files/WorkPostPhoto/<%=rs.getString("workpost_image")%>" height="100" width="100"</div>
                          <div class="cont"><div>Details</div><div><%=rs.getString("workpost_details")%></div></div>
                          <div class="cont"><div>duration</div><div><%=rs.getString("workpost_duration")%></div></div>
+                         <div class="cont"><div>Amount</div><div><%=rs.getString("workpost_amount")%></div></div>
                          <div class="cont"><div>Post date</div><div><%=rs.getString("workpost_date")%></div></div>
                          
                          <div><a href="WorkPostDisplay.jsp?did=<%=rs.getString("workpost_id")%>">Delete</a></div>
                          <div><a href="WorkGallery.jsp?pid=<%=rs.getString("workpost_id")%>">Add More mages</a></div>
                          <div><a href="WorkGalleryDisplay.jsp?gid=<%=rs.getString("workpost_id")%>">ViewGallery</a></div>
-                     </tr>
-                     </div>
+                    </div>
+       </div> </tr>
+                     
                      <%
                  }
                      %>      
              </table>
         </form>
-             </div>  
+              
              
         </div>
              <br><br>

@@ -3,6 +3,7 @@
     Created on : 18 Jan, 2024, 3:45:36 PM
     Author     : ashwi
 --%>
+<%@page import="java.sql.ResultSet"%>
 
 <jsp:useBean class="DB.ConnectionClass" id="con"></jsp:useBean>
 
@@ -20,17 +21,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <title>JSP Page</title>
     </head>
     <body>
-        <%
+      <%
 
             File savedFile = null;
             FileItem f_item = null;
 
             String field_name = "";
             String file_name = "";
-            String wp = "";
+            String ph = "";
 
             String field[] = new String[20];
             String value[] = new String[20];
@@ -84,9 +85,9 @@
                             Random r = new Random();
                             int r_num = r.nextInt(1111) + 999;
 
-                            wp = "WorkPhoto_" + r_num + ext;
+                            ph = "WorkPhoto_" + r_num + ext;
                             //creating a file object
-                            savedFile = new File(file_path + wp);
+                            savedFile = new File(file_path + ph);
                             try {
                                 //writing the file object
                                 f_item.write(savedFile);
@@ -100,20 +101,20 @@
                     }
 
                 }
-               
-                String strw = "insert into tbl_workpost(workpost_image,workpost_details,workpost_duration,workpost_date,worker_id)"
-                        + "values('" + wp+ "','" + value[0] + "','" + value[1] + "',curdate(),'"+session.getAttribute("wid")+"')";
+                String str1 = "insert into tbl_workpost(workpost_image,workpost_details,workpost_duration,workpost_amount,workpost_date,worker_id)"
+                        + "values('" + ph + "','" + value[0] + "','" + value[1] + "','" + value[2] + "',curdate(),'"+session.getAttribute("wid")+"')";
 
-                System.out.println(strw);       
+                System.out.println(str1);       
 
-                         boolean status = con.executeCommand(strw);
+                boolean status = con.executeCommand(str1);
+
 
                 if (status == true) {
         %>
         <script type="text/javascript" >
             alert("Upload Successfully..");
             setTimeout(function() {
-                window.location.href = '../../Worker/WorkPost.jsp'
+                window.location.href = '../../Worker/WorkerHomePage.jsp'
             }, 100);
         </script>
         <%

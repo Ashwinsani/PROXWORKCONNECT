@@ -56,7 +56,13 @@
        <tr>
                    <td>Duration</td>
                     <td>
-                        <input class="text-box" type="text" name="duration" placeholder="Enter duration of work" required>
+                        <input type="text" class="text-box" name="duration" placeholder="Enter duration of work" required>
+                    </td>
+                </tr>
+                <tr>
+                   <td>Estimated amount</td>
+                    <td>
+                        <input type="text" class="text-box" name="workpostamt" placeholder="Estimated amount of the work" required>
                     </td>
                 </tr>
        <tr>

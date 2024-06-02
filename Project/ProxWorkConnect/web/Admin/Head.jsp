@@ -93,6 +93,9 @@
           
         </div>
       </li>
+      <li class="nav-item">
+                  <a class="nav-link" href="Workertype.jsp">Workertype</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="AdminChangePassword.jsp">change password</a>
                 </li>

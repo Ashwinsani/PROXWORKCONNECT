@@ -25,25 +25,21 @@
                 color:white;
                 border-radius: 2px;
             }    
-            .fonth2{
+          .fonth{
                  font-family: "Poppins", sans-serif;
                 color: white;
                 font-weight: bold; 
                 font-weight: italic; 
-                
-            } 
-                
-            .font{
-                font-family: "Poppins", sans-serif;
-                color: #ffef19b8;
             }
-                  
-            .font1{
+             .fonty{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8; 
+            }
+            .fontw{
                 font-family: "Poppins", sans-serif;
                 color: white;
                 
             }
-            
             </style>
     </head>
     
@@ -53,35 +49,36 @@
     <body>
         <br><br>
           <div align="center">
-        <h2 class="fonth2">Request Notifications</h2>
+        <h2 class="fonth">Request Notifications</h2>
         <table cellpadding="15" align="center">
                 <tr>
-                    <th class="font">Sl.no</th>
-                    <th class="font">Labour</th>
-                    <th class="font">Work Date</th>
-                    <th class="font">Work Details</th>
-                    <th class="font">Requested Date</th>
-                    <th class="font">Status</th>
-                    <th class="font">Action</th>
+                    <th class="fonty">Sl.no</th>
+                    <th class="fonty">Labour</th>
+                    <th class="fonty">Work Date</th>
+                    <th class="fonty">Work Details</th>
+                    <th class="fonty">Requested Date</th>
+                    <th class="fonty">Status</th>
+                    <th class="fonty">Action</th>
                 </tr>
                 <%
-                 String selqry="select * from tbl_workrequest w inner join tbl_worker u on u.worker_id=w.worker_id";
-                 ResultSet rs=con.selectCommand(selqry);
+         
+                 String selqry="select * from tbl_workrequest w inner join tbl_worker u on u.worker_id=w.worker_id where w.user_id='" + session.getAttribute("uid") + "'";
+                ResultSet rs=con.selectCommand(selqry);
                  int i=0;
                  while(rs.next())
                  {
                      i++;
                      %>
                      <tr>
-                         <td class="font1"><%=i%></td>
-                         <td class="font1"><%=rs.getString("worker_name")%></td>
-                         <td class="font1"><%=rs.getString("work_date")%></td>
-                         <td class="font1"><%=rs.getString("request_details")%></td>
-                         <td class="font1"><%=rs.getString("request_date")%></td>
-                         <td class="font1">
+                         <td class="fontw"><%=i%></td>
+                         <td class="fontw"><%=rs.getString("worker_name")%></td>
+                         <td class="fontw"><%=rs.getString("work_date")%></td>
+                         <td class="fontw"><%=rs.getString("request_details")%></td>
+                         <td class="fontw"><%=rs.getString("request_date")%></td>
+                         <td class="fontw">
                              <%
                               if(rs.getString("request_status").equals("0"))
-                              {
+                        {
                                 out.println("Request pending");
                                 }
                               else if(rs.getString("request_status").equals("1"))
@@ -96,24 +93,29 @@
                               {
                                  out.println("Work started"); 
                               }
-                              else if(rs.getString("request_status").equals("4") || rs.getString("request_status").equals("5"))
-                              {
+
+                             else if(rs.getString("request_status").equals("4") || rs.getString("request_status").equals("5"))//payment requested
+                             {
                                  out.println("Work completed"); 
                               }
-                              else if(rs.getString("request_status").equals("6"))
+                              else if(rs.getString("request_status").equals("6"))//payment done
                               {
                                  out.println("Payment Done"); 
                               }
-                              else if(rs.getString("request_status").equals("7"))
+                              else if(rs.getString("request_status").equals("7"))//finished
                               {
                                  out.println("Ended<br>");
                      
                                  %>
-                                 <a href="Review.jsp?gid=<%=rs.getString("workrequest_id")%>">Rate Now</a>
+                                 <a href="Review.jsp?gid=<%=rs.getString("worker_id")%>">Rate Now</a>
                                  <%
                               }
-                       %>  </td>
-                         <td class="font1">
+                              else if(rs.getString("request_status").equals("8"))//visit site before accept
+                              {
+                                 out.println("Site will be visited"); 
+                              }
+                            %>  </td>
+                         <td>
                              <%
                                if (rs.getInt("request_status")==0)
                                 {
@@ -125,14 +127,14 @@
                                 }
                                else{
                               %>
-                              Contact : <%=rs.getString("worker_contact")%><br>
+                              <div class="fontw">  Contact : <%=rs.getString("worker_contact")%></<br></div>
                               <a href="Complaint.jsp?cid=<%=rs.getString("worker_id")%>">Complaints</a><br>
                               <%
                                }
-                              if(rs.getInt("request_status")==5)
+                              if(rs.getInt("request_status")==5)//payment requested
                               {
                                int worker_amt=Integer.parseInt(rs.getString("request_amount"));
-                               int perc=(worker_amt/100)*10;
+                               int perc=(worker_amt/100)*5;
                                int total=worker_amt+perc;
                               %>  
                               
@@ -143,6 +145,7 @@
                              <%
                                  }
                               %>
+                               
                          </td>
                          
                      </tr>

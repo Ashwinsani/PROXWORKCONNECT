@@ -11,8 +11,47 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Workertype</title>
+   <style>
+         .bg-img{
+            background-image:url("../Assets/Templates/Main/images/Admin.jpg");
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: center;
+            }
+             .text-box{
+                background-color: transparent;
+                width: 275px;
+                height:50px; 
+                color:white;
+                border-radius: 2px;
+            }    
+                 .fonth22{
+                 font-family: "Poppins", sans-serif;
+                color: white;
+                font-weight: bold; 
+                font-weight: italic; 
+                 }
+                
+            .font0{
+                font-family: "Poppins", sans-serif;
+                color: #ffef19b8;
+            }
+            .button{
+                background-color: #e0e032c2;
+            }
+            .font11{
+                font-family: "Poppins", sans-serif;
+                color: white;
+            }
+            </style>
+    </head>
+    <div class="bg-img">
+        <div style="background-color: #000000b8 !important;">
+    <%@include file="Head.jsp" %>
     </head>
     <body>
+        <br><br>
+        <div class="font0">
          <%
           if(request.getParameter("save")!=null)
           {
@@ -46,7 +85,7 @@
           }
         %>
         <form method="post">
-            <table border="3" align="center">
+            <table cellpadding="10" align="center">
                 <tr>
                 <td>Worker Type</td>
                 <td><input type="text" name="typename" value="<%=editname%>" placeholder="Enter Worker Type">
@@ -54,11 +93,11 @@
                 </tr>
                 
                 <tr>
-                    <td colspan="2" align="center"><input type="submit" name="save" value="Save">
-                    <input type="reset" name="cancel" value="Cancel"></td>
+                    <td colspan="2" align="center"><input type="submit" class="button" name="save" value="Save">
+                    <input type="reset" class="button" name="cancel" value="Cancel"></td>
                 </tr>
             </table><br>
-            <table border="1" align="center">
+            <table cellpadding="10" align="center">
                 <tr>
                     <th>Sl.no</th>
                     <th>Workertype</th>
@@ -73,9 +112,9 @@
                      i++;
                      %>
                      <tr>
-                         <td><%=i%></td>
-                         <td><%=rs.getString("workertype_name")%></td>
-                         <td><a href="Workertype.jsp?did=<%=rs.getString("workertype_id")%>">Delete</a>
+                         <td class="font11"><%=i%></td>
+                         <td class="font11"><%=rs.getString("workertype_name")%></td>
+                         <td class="font11"><a href="Workertype.jsp?did=<%=rs.getString("workertype_id")%>">Delete</a>
                          |<a href="Workertype.jsp?eid=<%=rs.getString("workertype_id")%>">Edit</a></td>
                      </tr>
                      <%
@@ -84,5 +123,10 @@
                     
             </table>
         </form>
-    </body>
+ </body>
+    <br> <br> <br> <br>
+     <%@include file="Foot.jsp" %>
+        </div>
+     </div>
+    </div>
 </html>

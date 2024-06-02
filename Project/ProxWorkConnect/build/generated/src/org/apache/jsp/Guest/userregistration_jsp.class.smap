@@ -1,10 +1,10 @@
 SMAP
-userregistration_jsp.java
+UserRegistration_jsp.java
 JSP
 *S JSP
 *F
-+ 0 userregistration.jsp
-Guest/userregistration.jsp
++ 0 UserRegistration.jsp
+Guest/UserRegistration.jsp
 + 1 Head.jsp
 Guest/Head.jsp
 + 2 Foot.jsp
@@ -12,21 +12,21 @@ Guest/Foot.jsp
 *L
 5:51
 6:52,9
-7,37:61
-1#1,94:98
-43#0,75:191
-118,5:267
-122:272
-123:273,6
-124:279
-125,2:281
-126,10:283
-136,5:294
-140:299
-141:300,6
-142:306
-143,2:308
-144,55:310
-1#2,92:365
-198#0,5:457
+7,39:61
+1#1,97:100
+45#0,75:196
+120,6:272
+125:278
+126:279,6
+127:285
+128,2:287
+129,10:289
+139,6:300
+144:306
+145:307,6
+146:313
+147,2:315
+148,54:317
+1#2,92:371
+201#0,5:463
 *E

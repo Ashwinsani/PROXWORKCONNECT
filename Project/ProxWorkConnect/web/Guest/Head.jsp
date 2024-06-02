@@ -37,18 +37,18 @@
         <div class="container-fluid">
           <div class="contact_link-container">
             <a href="" class="contact_link1">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <i class="fa fa-map-marker" aria-hidden="true"> ProxWorkConnect</i>
             </a>
-            <a href="" class="contact_link2">
+          <!--  <a href="" class="contact_link2">
               <i class="fa fa-phone" aria-hidden="true"></i>
               <span>
                 Call : +01 1234567890
               </span>
-            </a>
+            </a>-->
             <a href="" class="contact_link3">
               <i class="fa fa-envelope" aria-hidden="true"></i>
               <span>
-                demo@gmail.com
+                pwc@gmail.com
               </span>
             </a>
           </div>
