@@ -90,6 +90,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="RequestAction.jsp">Requests</a>
           <a class="dropdown-item" href="BookingAction.jsp">Bookings</a>
+           <a class="dropdown-item" href="WorkerComplaintView.jsp">My complaints</a>
         </div>
       </li>
       <li class="nav-item">

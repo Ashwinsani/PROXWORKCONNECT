@@ -76,7 +76,8 @@
                     <tr>
                     <td>DOB</td>
                     <td>
-                        <input  class="text-box"  type="date" name="dob"placeholder="Enter DateOfBirth" required>
+                    <input required class="text-box" type="date" name="dob" placeholder="Enter DateOfBirth" required pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$" title="Please enter a date in DD/MM/YYYY format.">
+
                     </td>
                 </tr>
                  <tr>

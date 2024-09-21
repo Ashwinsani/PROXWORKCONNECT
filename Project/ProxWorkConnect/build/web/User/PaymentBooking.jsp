@@ -184,16 +184,16 @@
         <body>
             <div class="wrapper">
                 <h2>Payment Gateway</h2>
-                <form method="POST">
+                <form method="POST" id="paymentForm">
                     
-                     <div class="input-group">
+                    <div class="input-group">
                         <div class="input-box">
                             <input class="name" type="text" name="txt_amount" placeholder="Amount" readonly="" value="<%=total%>" required="required">
                             <i class="fa fa-envelope icon" aria-hidden="true"></i>
                         </div>
                     </div>	
                     
-                     <div class="input-group">
+                    <div class="input-group">
                         <div class="input-box">
                             <h4>Payment Details</h4>
                             <input type="radio" name="rdbpay" id="cc" checked class="radio">
@@ -258,5 +258,26 @@
     </body>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js'></script>
-</html>
+    <script>
+    document.getElementById('paymentForm').addEventListener('submit', function(event) {
+        const dateInput = document.getElementById('txtdate').value;
+        
+        // Regular expression to check MM / YY format
+        const regex = /^(0[1-9]|1[0-2]) \/ (\d{2})$/;
+        if (!regex.test(dateInput)) {
+            alert('Invalid expiration date. Please enter a valid date in MM / YY format.');
+            event.preventDefault();
+            return;
+        }
 
+        const [month, year] = dateInput.split(' / ');
+        const currentYear = new Date().getFullYear() % 100; // Get last two digits of the current year
+        const currentMonth = new Date().getMonth() + 1;
+
+        if (parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
+            alert('Invalid expiration date. The date must be in the future.');
+            event.preventDefault();
+        }
+    });
+</script>
+</html>

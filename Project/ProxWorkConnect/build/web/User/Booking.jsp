@@ -53,7 +53,7 @@
           }
           %>
           <div class="font">
-        <form method="post">
+        <form method="post" id="form">
             <table cellpadding="10" align="center">
         <tr>
                         <td>Details</td>
@@ -68,7 +68,7 @@
                      <tr>
                     <td>Work Date</td>
                     <td>
-                        <input  type="date" name="date" placeholder="Enter Date of Work" required>
+                        <input type="text" id="workDate" name="date" placeholder="Enter Date of Work" required pattern="^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/\d{4}$" title="Please enter a date in DD/MM/YYYY format.">
                     </td>
                 </tr>
                 <tr>
@@ -81,6 +81,22 @@
         </form>
           </div>
     </body>
+    <script>
+    document.getElementById('form').addEventListener('submit', function(event) {
+        const dateInput = document.getElementById('workDate').value;
+      
+        // Split the date input into components
+        const [day, month, year] = dateInput.split('/').map(Number);
+        const inputDate = new Date(year, month - 1, day);
+        const currentDate = new Date();
+
+        // Check if the date is not in the past
+        if (inputDate < currentDate.setHours(0, 0, 0, 0)) {
+            alert('The date of work cannot be in the past.');
+            event.preventDefault();
+        }
+    });
+</script>
     <BR><br>
      <%@include file="Foot.jsp" %>
     </div>

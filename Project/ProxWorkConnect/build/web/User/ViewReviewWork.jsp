@@ -235,12 +235,12 @@
 
         function load_rating_data()
         {
-            var worker_id = $('#txt_lid').val();
+            var workpost_id = $('#txt_lid').val();
 
             $.ajax({
                 url: "../Assets/AjaxPages/AjaxWorkRating.jsp",
                 method: "POST",
-                data: {action: 'load_data', wid: worker_id},
+                data: {action: 'load_data', wid: workpost_id},
                 dataType: "JSON",
                 success: function(data)
                 {

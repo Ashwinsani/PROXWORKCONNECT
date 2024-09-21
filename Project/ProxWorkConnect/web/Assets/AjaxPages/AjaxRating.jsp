@@ -3,7 +3,6 @@
     Created on : 24 May, 2024, 2:37:48 PM
     Author     : ashwi
 --%>
-
 <%@page import="java.util.Date"%>
 <%@page import="java.text.ParseException"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -14,15 +13,24 @@
 <%
 
     if (request.getParameter("rating_data") != null) {
+        
+         String checkQuery = "SELECT COUNT(*) FROM tbl_review WHERE user_id = '" + session.getAttribute("uid") + "' AND worker_id = '" + request.getParameter("worker_id") + "'";
+        ResultSet checkRs = con.selectCommand(checkQuery);
+         
+        if (checkRs.next() && checkRs.getInt(1) == 0) {
 
-        String ins = "INSERT INTO tbl_review(user_name,user_rating,user_review,review_datetime,worker_id)"
-                + "VALUES('" + request.getParameter("user_name") + "','" + request.getParameter("rating_data") + "','" + request.getParameter("user_review") + "',SYSDATE(),'" + request.getParameter("worker_id") + "')";
+        String ins = "INSERT INTO tbl_review(user_name,user_rating,user_review,review_datetime,worker_id,user_id)"
+                + "VALUES('" + request.getParameter("user_name") + "','" + request.getParameter("rating_data") + "','" + request.getParameter("user_review") + "',SYSDATE(),'" + request.getParameter("worker_id") + "','" + session.getAttribute("uid") + "')";
 
         if (con.executeCommand(ins)) {
             out.println("Your Review & Rating Successfully Submitted");
-        } else {
+        }else {
             out.println("Your Review & Rating Insertion Failed");
+              }
         }
+        else{
+         out.println("You have already submitted a review for this worker"); 
+                    }                
 
     }
 
@@ -42,9 +50,9 @@
 
         JSONObject b = new JSONObject();
         JSONArray J = new JSONArray();
-        JSONObject a = new JSONObject();
+        //JSONObject a = new JSONObject();
         while (rs.next()) {
-
+            JSONObject a = new JSONObject();
             a.put("user_name", rs.getString("user_name"));
             a.put("user_review", rs.getString("user_review"));
             a.put("rating", rs.getString("user_rating"));
